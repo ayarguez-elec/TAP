@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="controller.ModifierPouchoirController"
+      spacing="0"
+      alignment="TOP_CENTER"
+      style="-fx-background-color: #f0f2f5;"
+      prefWidth="Infinity"
+      prefHeight="Infinity">
+
+    <!-- HEADER -->
+    <VBox style="-fx-background-color: #ffffff;
+                 -fx-padding: 12 25;
+                 -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 6, 0, 0, 2); -fx-border-color: #E2E8F0; -fx-border-width: 0 0 1 0;">
+
+        <HBox alignment="CENTER_LEFT" spacing="15">
+            <Button text="← Retour" onAction="#handleRetour"
+                    style="-fx-background-color: #EBF8F9; -fx-text-fill: #346771; -fx-font-weight: bold; -fx-padding: 5 14; -fx-border-radius: 6; -fx-background-radius: 6; -fx-cursor: hand; -fx-font-size: 12px; -fx-border-color: #346771; -fx-border-width: 1;"/>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <VBox alignment="CENTER_RIGHT">
+                <Label text="Modifier un pochoir"
+                       style="-fx-text-fill: #21262A; -fx-font-size: 17px; -fx-font-weight: bold; -fx-letter-spacing: 1px;"/>
+                <Label fx:id="referenceLabel" text="Référence : "
+                       style="-fx-text-fill: #6F8D94; -fx-font-size: 10px; -fx-font-weight: 300;"/>
+            </VBox>
+        </HBox>
+    </VBox>
+
+    <!-- CORPS -->
+    <VBox spacing="12" alignment="TOP_CENTER" style="-fx-padding: 20 30; -fx-background-color: #f0f2f5;">
+
+        <!-- Carte formulaire -->
+        <VBox spacing="12" style="-fx-background-color: #ffffff;
+                                  -fx-border-radius: 10;
+                                  -fx-background-radius: 10;
+                                  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 10, 0, 0, 2);
+                                  -fx-padding: 18 25 18 25;"
+              maxWidth="650" prefWidth="650">
+
+            <HBox alignment="CENTER_LEFT" spacing="8">
+                <Rectangle width="3" height="18" fill="#3A98A5" arcWidth="2" arcHeight="2"/>
+                <Label text="Modifier le pochoir"
+                       style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #21262A;"/>
+            </HBox>
+
+            <Separator style="-fx-background-color: #e8eaee;"/>
+
+            <GridPane hgap="15" vgap="10" alignment="CENTER" style="-fx-padding: 5 0 5 0;">
+
+                <columnConstraints>
+                    <ColumnConstraints prefWidth="130" minWidth="130" maxWidth="130" halignment="RIGHT"/>
+                    <ColumnConstraints prefWidth="400" hgrow="ALWAYS"/>
+                </columnConstraints>
+
+                <!-- Ligne 1 : Référence (lecture seule) -->
+                <Label text="Référence" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                       GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="refField"
+                           style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                  -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                  -fx-background-color: #e8eaee; -fx-text-fill: #666;"
+                           editable="false"
+                           GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                <!-- Ligne 2 : Programme -->
+                <Label text="Programme" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                       GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <TextField fx:id="programmeField" promptText="Ex: 109876542"
+                           style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                  -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                  -fx-background-color: #fafbfc;"
+                           GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                <!-- Ligne 3 : Client -->
+                <Label text="Client" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                       GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <ComboBox fx:id="clientCombo"
+                          style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                 -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                 -fx-background-color: #fafbfc;"
+                          prefWidth="250"
+                          GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                <!-- Ligne 4 : Produit -->
+                <Label text="Produit" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                       GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                <ComboBox fx:id="produitCombo"
+                          style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                 -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                 -fx-background-color: #fafbfc;"
+                          prefWidth="250"
+                          GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+                <!-- Ligne 5 : Quantité cartes -->
+                <Label text="Quantité cartes" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                       GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                <TextField fx:id="quantiteField" promptText="Ex: 50"
+                           style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                  -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                  -fx-background-color: #fafbfc;"
+                           GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+                <!-- Ligne 6 : Nbr cartes dans flan -->
+                <Label text="Nbr cartes dans flan" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                       GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                <TextField fx:id="nbFlanField" promptText="Ex: 10"
+                           style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                  -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                  -fx-background-color: #fafbfc;"
+                           GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+                <!-- Ligne 7 : Stock actuel (modifiable) -->
+                <Label text="Stock actuel" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                       GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+                <TextField fx:id="stockField" promptText="Ex: 50"
+                           style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                  -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                  -fx-background-color: #fafbfc;"
+                           GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+                <Label text="Racle" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                       GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+                <ComboBox fx:id="racleCombo"
+                          style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                 -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                 -fx-background-color: #fafbfc;"
+                          prefWidth="150"
+                          GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+
+
+            </GridPane>
+
+            <HBox spacing="12" alignment="CENTER" style="-fx-padding: 8 0 0 0;">
+                <Button text="Annuler" onAction="#handleAnnuler"
+                        style="-fx-background-color: #e8eaee;
+                               -fx-text-fill: #6F8D94;
+                               -fx-font-weight: bold;
+                               -fx-padding: 6 25;
+                               -fx-border-radius: 6;
+                               -fx-background-radius: 6;
+                               -fx-cursor: hand;
+                               -fx-font-size: 12px;"/>
+                <Button text="Modifier" onAction="#handleValider"
+                        style="-fx-background-color: #3A98A5;
+                               -fx-text-fill: #ffffff;
+                               -fx-font-weight: bold;
+                               -fx-padding: 6 25;
+                               -fx-border-radius: 6;
+                               -fx-background-radius: 6;
+                               -fx-cursor: hand;
+                               -fx-font-size: 12px;
+                               -fx-effect: dropshadow(gaussian, rgba(58,152,165,0.3), 6, 0, 0, 2);"/>
+            </HBox>
+
+        </VBox>
+
+    </VBox>
+</VBox>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.FicheSerigraphieController"
+            style="-fx-background-color: #F0F2F5;">
+
+    <!-- ===== HEADER ===== -->
+    <top>
+        <VBox style="-fx-background-color: #ffffff; -fx-border-color: #E2E8F0; -fx-border-width: 0 0 1 0;">
+
+            <!-- Titre de la page -->
+            <HBox alignment="CENTER_LEFT" spacing="12" style="-fx-padding: 16 20 12 20;">
+                <Label text="📋" style="-fx-font-size: 24px;"/>
+                <VBox spacing="2">
+                    <Label text="Fiches Sérigraphie"
+                           style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #21262A;"/>
+                    <Label text="Gestion des fiches de production sérigraphie"
+                           style="-fx-font-size: 11px; -fx-text-fill: #94A3B8;"/>
+                </VBox>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button text="＋ Nouvelle fiche" onAction="#handleAjouter"
+                        style="-fx-background-color: #346771; -fx-text-fill: white; -fx-font-weight: bold;
+                               -fx-font-size: 12px; -fx-padding: 8 18; -fx-background-radius: 8; -fx-cursor: hand;"/>
+            </HBox>
+
+            <!-- Barre de recherche + stats -->
+            <HBox alignment="CENTER_LEFT" spacing="12"
+                  style="-fx-padding: 0 20 12 20; -fx-background-color: #F8FAFC;">
+                <TextField fx:id="searchField" promptText="🔍 Rechercher par client, produit, programme..."
+                           prefWidth="360"
+                           style="-fx-border-color: #CBD5E1; -fx-border-radius: 8; -fx-background-radius: 8;
+                                  -fx-padding: 7 12; -fx-font-size: 12px;"/>
+                <Button text="Rechercher" onAction="#handleRechercher"
+                        style="-fx-background-color: #46BE62; -fx-text-fill: white; -fx-font-weight: bold;
+                               -fx-padding: 7 16; -fx-background-radius: 8; -fx-cursor: hand;"/>
+                <Button text="Actualiser" onAction="#handleActualiser"
+                        style="-fx-background-color: #6F8D94; -fx-text-fill: white; -fx-font-weight: bold;
+                               -fx-padding: 7 16; -fx-background-radius: 8; -fx-cursor: hand;"/>
+                <Button text="📥 Importer Excel" onAction="#handleImporterExcel"
+                        style="-fx-background-color: #46BE62; -fx-text-fill: white; -fx-font-weight: bold;
+                               -fx-padding: 7 16; -fx-background-radius: 8; -fx-cursor: hand;"/>
+                <Button text="📄 Générer PDF" onAction="#handleGenererPDF"
+                        style="-fx-background-color: #D9691D; -fx-text-fill: white; -fx-font-weight: bold;
+                               -fx-padding: 7 16; -fx-background-radius: 8; -fx-cursor: hand;"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label fx:id="statsLabel" text="0 fiche(s)"
+                       style="-fx-font-size: 11px; -fx-text-fill: #94A3B8;"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <!-- ===== TABLEAU ===== -->
+    <center>
+        <VBox style="-fx-padding: 16 20 20 20; -fx-background-color: #F0F2F5;">
+
+            <!-- TableView -->
+            <TableView fx:id="fichesTable" VBox.vgrow="ALWAYS"
+                       style="-fx-background-color: #ffffff; -fx-border-color: #E2E8F0;
+                              -fx-border-radius: 10; -fx-background-radius: 10;">
+                <columns>
+                    <!-- N° -->
+                    <TableColumn fx:id="colNumero" text="N°" prefWidth="50" minWidth="40"/>
+
+                    <!-- Client -->
+                    <TableColumn fx:id="colClient" text="Client" prefWidth="110" minWidth="80"/>
+
+                    <!-- Produit -->
+                    <TableColumn fx:id="colProduit" text="Produit" prefWidth="120" minWidth="90"/>
+
+                    <!-- Face -->
+                    <TableColumn fx:id="colFace" text="Face" prefWidth="50" minWidth="40"/>
+
+                    <!-- N° Écran -->
+                    <TableColumn fx:id="colEcran" text="N° Écran" prefWidth="100" minWidth="80"/>
+
+                    <!-- Épaisseur -->
+                    <TableColumn fx:id="colEpaisseur" text="Épaisseur" prefWidth="80" minWidth="60"/>
+
+                    <!-- Programme -->
+                    <TableColumn fx:id="colProgramme" text="N° Programme" prefWidth="120" minWidth="90"/>
+
+                    <!-- Crème -->
+                    <TableColumn fx:id="colCreme" text="Crème" prefWidth="90" minWidth="70"/>
+
+                    <!-- Passages -->
+                    <TableColumn fx:id="colPassages" text="Passages" prefWidth="70" minWidth="60"/>
+
+                    <!-- Colonne Actions : Modifier + Supprimer -->
+                    <TableColumn fx:id="colActions" text="Actions" prefWidth="140" minWidth="130"/>
+                </columns>
+
+                <placeholder>
+                    <VBox alignment="CENTER" spacing="12" style="-fx-padding: 50;">
+                        <Label text="📋" style="-fx-font-size: 40px;"/>
+                        <Label text="Aucune fiche sérigraphie"
+                               style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #374151;"/>
+                        <Label text="Cliquez sur « Nouvelle fiche » pour en créer une"
+                               style="-fx-font-size: 11px; -fx-text-fill: #94A3B8;"/>
+                    </VBox>
+                </placeholder>
+            </TableView>
+
+        </VBox>
+    </center>
+
+</BorderPane>

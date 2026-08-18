@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.ProductionMainController"
+            stylesheets="@css/style.css">
+    <top>
+        <HBox styleClass="header-modern" alignment="CENTER_LEFT" spacing="15">
+            <HBox spacing="10" alignment="CENTER">
+                <javafx.scene.image.ImageView fitHeight="35" fitWidth="35" preserveRatio="true">
+                    <image>
+                        <javafx.scene.image.Image url="@image/logo.png" backgroundLoading="true"/>
+                    </image>
+                </javafx.scene.image.ImageView>
+                <VBox alignment="CENTER_LEFT">
+                    <Label text="Lacroix" styleClass="logo-text-modern"/>
+                    <Label text="Production" styleClass="logo-subtitle-modern"/>
+                </VBox>
+            </HBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="clockLabel" styleClass="clock-label" text=""/>
+        </HBox>
+    </top>
+    <left>
+        <VBox styleClass="sidebar-category" spacing="0">
+            <Label styleClass="category-label" text="PRODUCTION"/>
+            <Button styleClass="menu-button-category" fx:id="btnDashboard" onAction="#showDashboard">
+                <graphic><SVGPath content="M3 3h7v7H3zm11 0h7v7h-7zM3 14h7v7H3zm11 0h7v7h-7z" styleClass="sidebar-icon-path"/></graphic>
+                <text>Dashboard</text>
+            </Button>
+            <Button styleClass="menu-button-category" fx:id="btnPlanning" onAction="#showPlanning">
+                <graphic><SVGPath content="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2z" styleClass="sidebar-icon-path"/></graphic>
+                <text>Planning</text>
+            </Button>
+            <Button styleClass="menu-button-category" fx:id="btnAnomalie" onAction="#showAnomalie">
+                <graphic><SVGPath content="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" styleClass="sidebar-icon-path"/></graphic>
+                <text>Anomalies</text>
+            </Button>
+            <Region VBox.vgrow="ALWAYS"/>
+            <VBox styleClass="sidebar-user-footer" spacing="10">
+                <HBox spacing="10" alignment="CENTER_LEFT" styleClass="sidebar-user-card">
+                    <StackPane>
+                        <Circle radius="18" fill="#346771"/>
+                        <Label fx:id="userInitialsLabel" text="P" style="-fx-text-fill: #ffffff; -fx-font-weight: bold; -fx-font-size: 12px;"/>
+                    </StackPane>
+                    <VBox alignment="CENTER_LEFT" spacing="1" HBox.hgrow="ALWAYS">
+                        <Label fx:id="userNameLabel" text="Production" style="-fx-text-fill: #21262A; -fx-font-weight: bold; -fx-font-size: 13px;"/>
+                        <Label text="PRODUCTION" style="-fx-text-fill: #6F8D94; -fx-font-size: 11px;"/>
+                    </VBox>
+                </HBox>
+                <Button fx:id="btnDeconnexion" text="&#128682;  Déconnexion" styleClass="sidebar-logout-btn" onAction="#handleLogout"/>
+                <Label text="v1.0 | Lacroix Electronics" style="-fx-text-fill: #A0AEC0; -fx-font-size: 10px;" alignment="CENTER" maxWidth="Infinity"/>
+            </VBox>
+        </VBox>
+    </left>
+    <center>
+        <StackPane fx:id="contentArea" styleClass="content-area"/>
+    </center>
+</BorderPane>

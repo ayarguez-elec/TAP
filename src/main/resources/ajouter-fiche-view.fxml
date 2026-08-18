@@ -1,0 +1,581 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="controller.AjouterFicheController"
+      spacing="0"
+      alignment="TOP_CENTER"
+      style="-fx-background-color: #f0f2f5;"
+      prefWidth="Infinity"
+      prefHeight="Infinity">
+
+    <!-- HEADER -->
+    <VBox style="-fx-background-color: #ffffff;
+                 -fx-padding: 12 25;
+                 -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 6, 0, 0, 2); -fx-border-color: #E2E8F0; -fx-border-width: 0 0 1 0;">
+        <HBox alignment="CENTER_LEFT" spacing="15">
+            <Button text="&#8592; Retour" onAction="#handleRetour"
+                    style="-fx-background-color: #EBF8F9; -fx-text-fill: #346771; -fx-font-weight: bold; -fx-padding: 5 14; -fx-border-radius: 6; -fx-background-radius: 6; -fx-cursor: hand; -fx-font-size: 12px; -fx-border-color: #346771; -fx-border-width: 1;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <VBox alignment="CENTER_RIGHT">
+                <Label text="Nouvelle Fiche S&#233;rigraphie"
+                       style="-fx-text-fill: #21262A; -fx-font-size: 17px; -fx-font-weight: bold; -fx-letter-spacing: 1px;"/>
+                <Label text="Remplissez les informations ci-dessous"
+                       style="-fx-text-fill: #6F8D94; -fx-font-size: 10px; -fx-font-weight: 300;"/>
+            </VBox>
+        </HBox>
+    </VBox>
+
+    <!-- SCROLL PANE -->
+    <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"
+                style="-fx-background-color: #f0f2f5; -fx-background: #f0f2f5;"
+                VBox.vgrow="ALWAYS">
+
+        <VBox spacing="14" alignment="TOP_CENTER" style="-fx-padding: 20 30 10 30; -fx-background-color: #f0f2f5;">
+
+            <!-- ====== SECTION 1 : Informations Generales ====== -->
+            <VBox spacing="10" style="-fx-background-color: #ffffff;
+                                      -fx-border-radius: 10;
+                                      -fx-background-radius: 10;
+                                      -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 10, 0, 0, 2);
+                                      -fx-padding: 18 25 18 25;"
+                  maxWidth="720" prefWidth="720">
+                <HBox alignment="CENTER_LEFT" spacing="8">
+                    <Rectangle width="3" height="18" fill="#3A98A5" arcWidth="2" arcHeight="2"/>
+                    <Label text="Informations G&#233;n&#233;rales"
+                           style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #21262A;"/>
+                </HBox>
+                <Separator style="-fx-background-color: #e8eaee;"/>
+                <GridPane hgap="15" vgap="10" style="-fx-padding: 5 0 5 0;">
+                    <Label text="Client" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                           GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <TextField fx:id="clientField" promptText="Nom du client"
+                               style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                      -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                      -fx-background-color: #fafbfc;"
+                               GridPane.rowIndex="0" GridPane.columnIndex="1" prefWidth="300"/>
+
+                    <Label text="Produit" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                           GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <TextField fx:id="produitField" promptText="R&#233;f&#233;rence produit"
+                               style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                      -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                      -fx-background-color: #fafbfc;"
+                               GridPane.rowIndex="1" GridPane.columnIndex="1" prefWidth="300"/>
+
+                    <Label text="Face" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                           GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                    <TextField fx:id="faceField" promptText="Ex: 1, 2, TOP, BOT"
+                               style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                      -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                      -fx-background-color: #fafbfc;"
+                               GridPane.rowIndex="2" GridPane.columnIndex="1" prefWidth="300"/>
+
+                    <Label text="N&#176; Programme" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                           GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                    <TextField fx:id="programmeField" promptText="Num&#233;ro de programme"
+                               style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                      -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                      -fx-background-color: #fafbfc;"
+                               GridPane.rowIndex="3" GridPane.columnIndex="1" prefWidth="300"/>
+
+                    <Label text="N&#176; PCB" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                           GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                    <TextField fx:id="pcbField" promptText="Num&#233;ro PCB"
+                               style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                      -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                      -fx-background-color: #fafbfc;"
+                               GridPane.rowIndex="4" GridPane.columnIndex="1" prefWidth="300"/>
+                </GridPane>
+            </VBox>
+
+            <!-- ====== SECTION 2 : Ecran & Creme ====== -->
+            <VBox spacing="10" style="-fx-background-color: #ffffff;
+                                      -fx-border-radius: 10;
+                                      -fx-background-radius: 10;
+                                      -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 10, 0, 0, 2);
+                                      -fx-padding: 18 25 18 25;"
+                  maxWidth="720" prefWidth="720">
+                <HBox alignment="CENTER_LEFT" spacing="8">
+                    <Rectangle width="3" height="18" fill="#3A98A5" arcWidth="2" arcHeight="2"/>
+                    <Label text="&#201;cran &amp; Cr&#232;me"
+                           style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #21262A;"/>
+                </HBox>
+                <Separator style="-fx-background-color: #e8eaee;"/>
+                <GridPane hgap="15" vgap="10" style="-fx-padding: 5 0 5 0;">
+                    <Label text="Mati&#232;re &#201;cran" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                           GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <TextField fx:id="matiereEcranField" promptText="Mati&#232;re de l'&#233;cran"
+                               style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                      -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                      -fx-background-color: #fafbfc;"
+                               GridPane.rowIndex="0" GridPane.columnIndex="1" prefWidth="300"/>
+
+                    <Label text="N&#176; &#201;cran" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                           GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <TextField fx:id="numeroEcranField" promptText="Num&#233;ro d'&#233;cran"
+                               style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                      -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                      -fx-background-color: #fafbfc;"
+                               GridPane.rowIndex="1" GridPane.columnIndex="1" prefWidth="300"/>
+
+                    <Label text="&#201;paisseur" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                           GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                    <TextField fx:id="epaisseurField" promptText="Ex: 150&#956;m"
+                               style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                      -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                      -fx-background-color: #fafbfc;"
+                               GridPane.rowIndex="2" GridPane.columnIndex="1" prefWidth="300"/>
+
+                    <Label text="Fournisseur Cr&#232;me" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                           GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                    <TextField fx:id="fournisseurCremeField" promptText="Nom du fournisseur"
+                               style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                      -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                      -fx-background-color: #fafbfc;"
+                               GridPane.rowIndex="3" GridPane.columnIndex="1" prefWidth="300"/>
+
+                    <Label text="D&#233;signation Cr&#232;me" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                           GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                    <TextField fx:id="designationCremeField" promptText="D&#233;signation de la cr&#232;me"
+                               style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                      -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                      -fx-background-color: #fafbfc;"
+                               GridPane.rowIndex="4" GridPane.columnIndex="1" prefWidth="300"/>
+
+                    <Label text="R&#233;f. Lacroix" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                           GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                    <TextField fx:id="refLacroixField" promptText="R&#233;f&#233;rence Lacroix"
+                               style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                      -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                      -fx-background-color: #fafbfc;"
+                               GridPane.rowIndex="5" GridPane.columnIndex="1" prefWidth="300"/>
+
+                    <Label text="Code-barres" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                           GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+                    <TextField fx:id="codeBarreField" promptText="Code-barres"
+                               style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                      -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                      -fx-background-color: #fafbfc;"
+                               GridPane.rowIndex="6" GridPane.columnIndex="1" prefWidth="300"/>
+                </GridPane>
+            </VBox>
+
+            <!-- ====== SECTION 3 : Passage A ====== -->
+            <VBox spacing="10" style="-fx-background-color: #ffffff;
+                                      -fx-border-radius: 10;
+                                      -fx-background-radius: 10;
+                                      -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 10, 0, 0, 2);
+                                      -fx-padding: 18 25 18 25;"
+                  maxWidth="720" prefWidth="720">
+                <HBox alignment="CENTER_LEFT" spacing="8">
+                    <Rectangle width="3" height="18" fill="#3A98A5" arcWidth="2" arcHeight="2"/>
+                    <Label text="Passage A"
+                           style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #21262A;"/>
+                </HBox>
+                <Separator style="-fx-background-color: #e8eaee;"/>
+                <GridPane hgap="15" vgap="10" style="-fx-padding: 5 0 5 0;">
+                    <Label text="Date" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                           GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <TextField fx:id="aDateField" promptText="JJ/MM/AAAA"
+                               style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                      -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                      -fx-background-color: #fafbfc;"
+                               GridPane.rowIndex="0" GridPane.columnIndex="1" prefWidth="300"/>
+
+                    <Label text="Machine" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                           GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <TextField fx:id="aMachineField" promptText="Nom de la machine"
+                               style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                      -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                      -fx-background-color: #fafbfc;"
+                               GridPane.rowIndex="1" GridPane.columnIndex="1" prefWidth="300"/>
+
+                    <Label text="Pression Avant" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                           GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                    <TextField fx:id="aPressionAvField" promptText="kg"
+                               style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                      -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                      -fx-background-color: #fafbfc;"
+                               GridPane.rowIndex="2" GridPane.columnIndex="1" prefWidth="300"/>
+
+                    <Label text="Pression Arri&#232;re" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                           GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                    <TextField fx:id="aPressionArField" promptText="kg"
+                               style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                      -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                      -fx-background-color: #fafbfc;"
+                               GridPane.rowIndex="3" GridPane.columnIndex="1" prefWidth="300"/>
+
+                    <Label text="Support" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                           GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                    <TextField fx:id="aSupportField" promptText="Type de support"
+                               style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                      -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                      -fx-background-color: #fafbfc;"
+                               GridPane.rowIndex="4" GridPane.columnIndex="1" prefWidth="300"/>
+
+                    <Label text="Nombre" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                           GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                    <TextField fx:id="aNombreField" promptText="Quantit&#233;"
+                               style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                      -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                      -fx-background-color: #fafbfc;"
+                               GridPane.rowIndex="5" GridPane.columnIndex="1" prefWidth="300"/>
+
+                    <Label text="Racle mm" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                           GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+                    <TextField fx:id="aRacleField" promptText="mm"
+                               style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                      -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                      -fx-background-color: #fafbfc;"
+                               GridPane.rowIndex="6" GridPane.columnIndex="1" prefWidth="300"/>
+
+                    <Label text="Info Techniques" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                           GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+                    <TextArea fx:id="aInfoField" promptText="Informations techniques sp&#233;cifiques"
+                              prefRowCount="2"
+                              style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                     -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                     -fx-background-color: #fafbfc;"
+                              GridPane.rowIndex="7" GridPane.columnIndex="1" prefWidth="300"/>
+
+                    <Label text="Visa" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                           GridPane.rowIndex="8" GridPane.columnIndex="0"/>
+                    <TextField fx:id="aVisaField" promptText="Visa"
+                               style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                      -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                      -fx-background-color: #fafbfc;"
+                               GridPane.rowIndex="8" GridPane.columnIndex="1" prefWidth="300"/>
+                </GridPane>
+            </VBox>
+
+            <!-- ====== SECTION 4 : Passage B ====== -->
+            <VBox spacing="10" style="-fx-background-color: #ffffff;
+                                      -fx-border-radius: 10;
+                                      -fx-background-radius: 10;
+                                      -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 10, 0, 0, 2);
+                                      -fx-padding: 18 25 18 25;"
+                  maxWidth="720" prefWidth="720">
+                <HBox alignment="CENTER_LEFT" spacing="8">
+                    <Rectangle width="3" height="18" fill="#3A98A5" arcWidth="2" arcHeight="2"/>
+                    <Label text="Passage B"
+                           style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #21262A;"/>
+                </HBox>
+                <Separator style="-fx-background-color: #e8eaee;"/>
+                <GridPane hgap="15" vgap="10" style="-fx-padding: 5 0 5 0;">
+                    <Label text="Date" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                           GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <TextField fx:id="bDateField" promptText="JJ/MM/AAAA"
+                               style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                      -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                      -fx-background-color: #fafbfc;"
+                               GridPane.rowIndex="0" GridPane.columnIndex="1" prefWidth="300"/>
+
+                    <Label text="Machine" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                           GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <TextField fx:id="bMachineField" promptText="Nom de la machine"
+                               style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                      -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                      -fx-background-color: #fafbfc;"
+                               GridPane.rowIndex="1" GridPane.columnIndex="1" prefWidth="300"/>
+
+                    <Label text="Pression Avant" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                           GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                    <TextField fx:id="bPressionAvField" promptText="kg"
+                               style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                      -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                      -fx-background-color: #fafbfc;"
+                               GridPane.rowIndex="2" GridPane.columnIndex="1" prefWidth="300"/>
+
+                    <Label text="Pression Arri&#232;re" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                           GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                    <TextField fx:id="bPressionArField" promptText="kg"
+                               style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                      -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                      -fx-background-color: #fafbfc;"
+                               GridPane.rowIndex="3" GridPane.columnIndex="1" prefWidth="300"/>
+
+                    <Label text="Support" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                           GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                    <TextField fx:id="bSupportField" promptText="Type de support"
+                               style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                      -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                      -fx-background-color: #fafbfc;"
+                               GridPane.rowIndex="4" GridPane.columnIndex="1" prefWidth="300"/>
+
+                    <Label text="Nombre" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                           GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                    <TextField fx:id="bNombreField" promptText="Quantit&#233;"
+                               style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                      -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                      -fx-background-color: #fafbfc;"
+                               GridPane.rowIndex="5" GridPane.columnIndex="1" prefWidth="300"/>
+
+                    <Label text="Racle mm" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                           GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+                    <TextField fx:id="bRacleField" promptText="mm"
+                               style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                      -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                      -fx-background-color: #fafbfc;"
+                               GridPane.rowIndex="6" GridPane.columnIndex="1" prefWidth="300"/>
+
+                    <Label text="Info Techniques" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                           GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+                    <TextArea fx:id="bInfoField" promptText="Informations techniques sp&#233;cifiques"
+                              prefRowCount="2"
+                              style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                     -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                     -fx-background-color: #fafbfc;"
+                              GridPane.rowIndex="7" GridPane.columnIndex="1" prefWidth="300"/>
+
+                    <Label text="Nature &#201;volution" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                           GridPane.rowIndex="8" GridPane.columnIndex="0"/>
+                    <TextArea fx:id="bNatureField" promptText="Nature de l'&#233;volution"
+                              prefRowCount="2"
+                              style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                     -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                     -fx-background-color: #fafbfc;"
+                              GridPane.rowIndex="8" GridPane.columnIndex="1" prefWidth="300"/>
+
+                    <Label text="Visa" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                           GridPane.rowIndex="9" GridPane.columnIndex="0"/>
+                    <TextField fx:id="bVisaField" promptText="Visa"
+                               style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                      -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                      -fx-background-color: #fafbfc;"
+                               GridPane.rowIndex="9" GridPane.columnIndex="1" prefWidth="300"/>
+                </GridPane>
+            </VBox>
+
+            <!-- ====== SECTION 5 : Passage C ====== -->
+            <VBox spacing="10" style="-fx-background-color: #ffffff;
+                                      -fx-border-radius: 10;
+                                      -fx-background-radius: 10;
+                                      -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 10, 0, 0, 2);
+                                      -fx-padding: 18 25 18 25;"
+                  maxWidth="720" prefWidth="720">
+                <HBox alignment="CENTER_LEFT" spacing="8">
+                    <Rectangle width="3" height="18" fill="#3A98A5" arcWidth="2" arcHeight="2"/>
+                    <Label text="Passage C"
+                           style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #21262A;"/>
+                </HBox>
+                <Separator style="-fx-background-color: #e8eaee;"/>
+                <GridPane hgap="15" vgap="10" style="-fx-padding: 5 0 5 0;">
+                    <Label text="Date" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                           GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <TextField fx:id="cDateField" promptText="JJ/MM/AAAA"
+                               style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                      -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                      -fx-background-color: #fafbfc;"
+                               GridPane.rowIndex="0" GridPane.columnIndex="1" prefWidth="300"/>
+
+                    <Label text="Machine" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                           GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <TextField fx:id="cMachineField" promptText="Nom de la machine"
+                               style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                      -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                      -fx-background-color: #fafbfc;"
+                               GridPane.rowIndex="1" GridPane.columnIndex="1" prefWidth="300"/>
+
+                    <Label text="Pression Avant" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                           GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                    <TextField fx:id="cPressionAvField" promptText="kg"
+                               style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                      -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                      -fx-background-color: #fafbfc;"
+                               GridPane.rowIndex="2" GridPane.columnIndex="1" prefWidth="300"/>
+
+                    <Label text="Pression Arri&#232;re" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                           GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                    <TextField fx:id="cPressionArField" promptText="kg"
+                               style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                      -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                      -fx-background-color: #fafbfc;"
+                               GridPane.rowIndex="3" GridPane.columnIndex="1" prefWidth="300"/>
+
+                    <Label text="Support" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                           GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                    <TextField fx:id="cSupportField" promptText="Type de support"
+                               style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                      -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                      -fx-background-color: #fafbfc;"
+                               GridPane.rowIndex="4" GridPane.columnIndex="1" prefWidth="300"/>
+
+                    <Label text="Nombre" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                           GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                    <TextField fx:id="cNombreField" promptText="Quantit&#233;"
+                               style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                      -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                      -fx-background-color: #fafbfc;"
+                               GridPane.rowIndex="5" GridPane.columnIndex="1" prefWidth="300"/>
+
+                    <Label text="Racle mm" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                           GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+                    <TextField fx:id="cRacleField" promptText="mm"
+                               style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                      -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                      -fx-background-color: #fafbfc;"
+                               GridPane.rowIndex="6" GridPane.columnIndex="1" prefWidth="300"/>
+
+                    <Label text="Info Techniques" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                           GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+                    <TextArea fx:id="cInfoField" promptText="Informations techniques sp&#233;cifiques"
+                              prefRowCount="2"
+                              style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                     -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                     -fx-background-color: #fafbfc;"
+                              GridPane.rowIndex="7" GridPane.columnIndex="1" prefWidth="300"/>
+
+                    <Label text="Nature &#201;volution" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                           GridPane.rowIndex="8" GridPane.columnIndex="0"/>
+                    <TextArea fx:id="cNatureField" promptText="Nature de l'&#233;volution"
+                              prefRowCount="2"
+                              style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                     -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                     -fx-background-color: #fafbfc;"
+                              GridPane.rowIndex="8" GridPane.columnIndex="1" prefWidth="300"/>
+
+                    <Label text="Visa" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                           GridPane.rowIndex="9" GridPane.columnIndex="0"/>
+                    <TextField fx:id="cVisaField" promptText="Visa"
+                               style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                      -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                      -fx-background-color: #fafbfc;"
+                               GridPane.rowIndex="9" GridPane.columnIndex="1" prefWidth="300"/>
+                </GridPane>
+            </VBox>
+
+            <!-- ====== SECTION 6 : Passage D ====== -->
+            <VBox spacing="10" style="-fx-background-color: #ffffff;
+                                      -fx-border-radius: 10;
+                                      -fx-background-radius: 10;
+                                      -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 10, 0, 0, 2);
+                                      -fx-padding: 18 25 18 25;"
+                  maxWidth="720" prefWidth="720">
+                <HBox alignment="CENTER_LEFT" spacing="8">
+                    <Rectangle width="3" height="18" fill="#3A98A5" arcWidth="2" arcHeight="2"/>
+                    <Label text="Passage D"
+                           style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #21262A;"/>
+                </HBox>
+                <Separator style="-fx-background-color: #e8eaee;"/>
+                <GridPane hgap="15" vgap="10" style="-fx-padding: 5 0 5 0;">
+                    <Label text="Date" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                           GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <TextField fx:id="dDateField" promptText="JJ/MM/AAAA"
+                               style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                      -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                      -fx-background-color: #fafbfc;"
+                               GridPane.rowIndex="0" GridPane.columnIndex="1" prefWidth="300"/>
+
+                    <Label text="Machine" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                           GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <TextField fx:id="dMachineField" promptText="Nom de la machine"
+                               style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                      -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                      -fx-background-color: #fafbfc;"
+                               GridPane.rowIndex="1" GridPane.columnIndex="1" prefWidth="300"/>
+
+                    <Label text="Pression Avant" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                           GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                    <TextField fx:id="dPressionAvField" promptText="kg"
+                               style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                      -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                      -fx-background-color: #fafbfc;"
+                               GridPane.rowIndex="2" GridPane.columnIndex="1" prefWidth="300"/>
+
+                    <Label text="Pression Arri&#232;re" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                           GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                    <TextField fx:id="dPressionArField" promptText="kg"
+                               style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                      -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                      -fx-background-color: #fafbfc;"
+                               GridPane.rowIndex="3" GridPane.columnIndex="1" prefWidth="300"/>
+
+                    <Label text="Support" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                           GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                    <TextField fx:id="dSupportField" promptText="Type de support"
+                               style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                      -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                      -fx-background-color: #fafbfc;"
+                               GridPane.rowIndex="4" GridPane.columnIndex="1" prefWidth="300"/>
+
+                    <Label text="Nombre" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                           GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                    <TextField fx:id="dNombreField" promptText="Quantit&#233;"
+                               style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                      -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                      -fx-background-color: #fafbfc;"
+                               GridPane.rowIndex="5" GridPane.columnIndex="1" prefWidth="300"/>
+
+                    <Label text="Racle mm" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                           GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+                    <TextField fx:id="dRacleField" promptText="mm"
+                               style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                      -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                      -fx-background-color: #fafbfc;"
+                               GridPane.rowIndex="6" GridPane.columnIndex="1" prefWidth="300"/>
+
+                    <Label text="Info Techniques" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                           GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+                    <TextArea fx:id="dInfoField" promptText="Informations techniques sp&#233;cifiques"
+                              prefRowCount="2"
+                              style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                     -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                     -fx-background-color: #fafbfc;"
+                              GridPane.rowIndex="7" GridPane.columnIndex="1" prefWidth="300"/>
+
+                    <Label text="Nature &#201;volution" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                           GridPane.rowIndex="8" GridPane.columnIndex="0"/>
+                    <TextArea fx:id="dNatureField" promptText="Nature de l'&#233;volution"
+                              prefRowCount="2"
+                              style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                     -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                     -fx-background-color: #fafbfc;"
+                              GridPane.rowIndex="8" GridPane.columnIndex="1" prefWidth="300"/>
+
+                    <Label text="Visa" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                           GridPane.rowIndex="9" GridPane.columnIndex="0"/>
+                    <TextField fx:id="dVisaField" promptText="Visa"
+                               style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                      -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                      -fx-background-color: #fafbfc;"
+                               GridPane.rowIndex="9" GridPane.columnIndex="1" prefWidth="300"/>
+                </GridPane>
+            </VBox>
+
+        </VBox>
+    </ScrollPane>
+
+    <!-- BOUTONS (hors ScrollPane) -->
+    <HBox spacing="12" alignment="CENTER"
+          style="-fx-padding: 12 25;
+                 -fx-background-color: #ffffff;
+                 -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 6, 0, 0, -2);">
+        <Button text="Annuler" onAction="#handleAnnuler"
+                style="-fx-background-color: #e8eaee;
+                       -fx-text-fill: #6F8D94;
+                       -fx-font-weight: bold;
+                       -fx-padding: 6 25;
+                       -fx-border-radius: 6;
+                       -fx-background-radius: 6;
+                       -fx-cursor: hand;
+                       -fx-font-size: 12px;"/>
+        <Button text="&#9989; Enregistrer" onAction="#handleEnregistrer"
+                style="-fx-background-color: #46BE62;
+                       -fx-text-fill: #ffffff;
+                       -fx-font-weight: bold;
+                       -fx-padding: 6 25;
+                       -fx-border-radius: 6;
+                       -fx-background-radius: 6;
+                       -fx-cursor: hand;
+                       -fx-font-size: 12px;
+                       -fx-effect: dropshadow(gaussian, rgba(70,190,98,0.3), 6, 0, 0, 2);"/>
+    </HBox>
+
+</VBox>

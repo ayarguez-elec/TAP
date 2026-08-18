@@ -1,0 +1,314 @@
+/* =============================================================
+   dark-theme.css  -  Lacroix Electronics
+   Added as 2nd stylesheet. Uses .dark class on root.
+   Brighter navy palette - readable text, visible charts.
+   ============================================================= */
+
+/* ===== BACKGROUNDS ===== */
+.dark                           { -fx-background-color: #1E2235; }
+.dark .header-modern            { -fx-background-color: #252B42; }
+.dark .content-area             { -fx-background-color: #1E2235; }
+.dark .sidebar-category         { -fx-background-color: #252B42; -fx-border-color: transparent #363D60 transparent transparent; }
+.dark .scroll-pane              { -fx-background-color: #252B42; -fx-background: #252B42; }
+.dark .scroll-pane .viewport    { -fx-background-color: #252B42; }
+
+/* ===== ALL TEXT ===== */
+.dark .label                    { -fx-text-fill: #E0E6F8; }
+.dark .logo-text-modern         { -fx-text-fill: #FFFFFF; }
+.dark .logo-subtitle-modern     { -fx-text-fill: #8895C0; }
+.dark .clock-label              { -fx-text-fill: #8895C0; }
+
+/* ===== CATEGORY + MENU ===== */
+.dark .category-label                   { -fx-text-fill: #60D0E0; }
+.dark .menu-button-category             { -fx-text-fill: #C0CCEE; -fx-background-color: transparent; }
+.dark .menu-button-category:hover       { -fx-background-color: #2E3560; -fx-text-fill: #60D0E0; }
+.dark .menu-button-category-selected    { -fx-background-color: #2A4A72; -fx-text-fill: #60D0E0; -fx-border-color: #60D0E0; -fx-border-width: 0 0 0 4; }
+.dark .sidebar-icon-path                { -fx-stroke: #6878A8; }
+.dark .menu-button-category:hover .sidebar-icon-path,
+.dark .menu-button-category-selected .sidebar-icon-path { -fx-stroke: #60D0E0; }
+
+/* ===== SIDEBAR FOOTER ===== */
+.dark .sidebar-user-footer      { -fx-background-color: #1A1F38; -fx-border-color: #363D60 transparent transparent transparent; }
+.dark .sidebar-user-card        { -fx-background-color: #2E3560; -fx-border-color: #3A4272; }
+.dark .sidebar-user-card .label { -fx-text-fill: #C0CCEE; }
+.dark .sidebar-logout-btn       { -fx-background-color: #3A1A28; -fx-text-fill: #FF9090; -fx-border-color: #5A2838; }
+.dark .sidebar-logout-btn:hover { -fx-background-color: #E53E3E; -fx-text-fill: #FFFFFF; }
+
+/* ===== CARDS ===== */
+.dark .kpi-card,
+.dark .stats-card,
+.dark .dashboard-card,
+.dark .dashboard-header-card,
+.dark .dashboard-widget-card,
+.dark .suivi-header-card,
+.dark .suivi-filter-card,
+.dark .historique-card,
+.dark .pouchoir-card            { -fx-background-color: #252B42; -fx-border-color: #363D60; }
+
+.dark .kpi-title                { -fx-text-fill: #8895C0; }
+.dark .kpi-value                { -fx-text-fill: #FFFFFF; }
+.dark .kpi-subtext              { -fx-text-fill: #606888; }
+.dark .widget-title             { -fx-text-fill: #E8EAF8; }
+.dark .widget-subtitle          { -fx-text-fill: #606888; }
+.dark .stats-number             { -fx-text-fill: #FFFFFF; }
+.dark .stats-label              { -fx-text-fill: #8895C0; }
+.dark .armoire-title            { -fx-text-fill: #E8EAF8; }
+.dark .dashboard-header-title   { -fx-text-fill: #FFFFFF; }
+.dark .dashboard-header-subtitle { -fx-text-fill: #8895C0; }
+
+/* ===== BANNER ===== */
+.dark .dashboard-banner         { -fx-background-color: linear-gradient(to right, #2A4A6A, #1E3050); }
+.dark .banner-date-pill         { -fx-background-color: rgba(96,208,224,0.2); -fx-text-fill: #60D0E0; }
+.dark .chart-card-teal          { -fx-background-color: linear-gradient(to bottom right, #1E3A5A, #162840); }
+
+/* ===== CHART BACKGROUNDS ===== */
+.dark .bar-chart,
+.dark .pie-chart,
+.dark .line-chart               { -fx-background-color: transparent; }
+.dark .chart-plot-background    { -fx-background-color: #1A2038; }
+.dark .chart-horizontal-grid-lines { -fx-stroke: #363D60; }
+.dark .chart-vertical-grid-lines   { -fx-stroke: transparent; }
+.dark .axis                     { -fx-tick-label-fill: #8895C0; }
+.dark .axis-label               { -fx-text-fill: #8895C0; }
+.dark .axis-tick-mark,
+.dark .axis-minor-tick-mark     { -fx-stroke: #3A4272; }
+.dark .chart-legend             { -fx-background-color: transparent; }
+.dark .chart-legend-item        { -fx-text-fill: #C0CCEE; }
+
+/* BRIGHT bar colors so they show up */
+.dark .default-color0.chart-bar { -fx-bar-fill: #5BC8D8; }
+.dark .default-color1.chart-bar { -fx-bar-fill: #7B9FFF; }
+.dark .default-color2.chart-bar { -fx-bar-fill: #FF9A70; }
+.dark .default-color3.chart-bar { -fx-bar-fill: #6DEEA0; }
+.dark .default-color4.chart-bar { -fx-bar-fill: #FFD878; }
+.dark .default-color5.chart-bar { -fx-bar-fill: #FF7898; }
+.dark .default-color0.chart-pie { -fx-pie-color: #5BC8D8; }
+.dark .default-color1.chart-pie { -fx-pie-color: #7B9FFF; }
+.dark .default-color2.chart-pie { -fx-pie-color: #FF9A70; }
+.dark .default-color3.chart-pie { -fx-pie-color: #6DEEA0; }
+
+/* ===== TABLE ===== */
+.dark .table-view                           { -fx-background-color: #252B42; -fx-border-color: #363D60; }
+.dark .table-view .column-header-background { -fx-background-color: #1A1F38; }
+.dark .table-view .column-header            { -fx-background-color: transparent; }
+.dark .table-view .column-header .label     { -fx-text-fill: #8895C0; -fx-font-weight: bold; }
+.dark .table-row-cell                       { -fx-background-color: #252B42; -fx-text-fill: #D0D8F8; }
+.dark .table-row-cell:odd                   { -fx-background-color: #202640; }
+.dark .table-row-cell:selected              { -fx-background-color: #2A4A7A; -fx-text-fill: #FFFFFF; }
+.dark .table-row-cell .text                 { -fx-fill: #D0D8F8; }
+
+/* ===== INPUTS ===== */
+.dark .text-field,
+.dark .password-field           { -fx-background-color: #2E3560; -fx-border-color: #3A4272; -fx-text-fill: #E8EAF8; -fx-prompt-text-fill: #5868A0; }
+.dark .text-area                { -fx-background-color: #2E3560; -fx-border-color: #3A4272; -fx-text-fill: #E8EAF8; }
+.dark .text-area .content       { -fx-background-color: #2E3560; }
+.dark .text-field:focused,
+.dark .password-field:focused   { -fx-border-color: #60D0E0; }
+
+/* ===== COMBOBOX ===== */
+.dark .combo-box                        { -fx-background-color: #2E3560; -fx-border-color: #3A4272; }
+.dark .combo-box .list-cell             { -fx-background-color: #2E3560; -fx-text-fill: #D0D8F8; }
+.dark .combo-box .arrow-button          { -fx-background-color: #2E3560; }
+.dark .combo-box .arrow                 { -fx-background-color: #8895C0; }
+.dark .combo-box-popup .list-view       { -fx-background-color: #2E3560; -fx-border-color: #3A4272; }
+.dark .combo-box-popup .list-cell       { -fx-background-color: #2E3560; -fx-text-fill: #D0D8F8; }
+.dark .combo-box-popup .list-cell:hover { -fx-background-color: #2A4A7A; }
+
+/* ===== SPINNER ===== */
+.dark .spinner .text-field                      { -fx-background-color: #2E3560; -fx-border-color: #3A4272; -fx-text-fill: #E8EAF8; }
+.dark .spinner .increment-arrow-button,
+.dark .spinner .decrement-arrow-button          { -fx-background-color: #363D60; }
+
+/* ===== SUIVI ===== */
+.dark .suivi-search-box         { -fx-background-color: #2E3560; -fx-border-color: #3A4272; }
+.dark .suivi-search-input       { -fx-text-fill: #E8EAF8; }
+.dark .suivi-combo              { -fx-background-color: #2E3560; -fx-border-color: #3A4272; }
+.dark .suivi-filter-label       { -fx-text-fill: #8895C0; }
+.dark .selected-emp-badge       { -fx-background-color: #2A4A7A; -fx-text-fill: #60D0E0; -fx-border-color: #3A5A8A; }
+
+/* ===== DETAIL PANEL ===== */
+.dark .detail-panel             { -fx-background-color: #252B42; -fx-border-color: #363D60; }
+
+/* ===== ARMOIRE ===== */
+.dark .armoire-cell-vide        { -fx-background-color: linear-gradient(to bottom right, #2A5A7A, #1E3858); -fx-border-color: #3A6A8A; }
+.dark .armoire-cell-disponible  { -fx-background-color: linear-gradient(to bottom right, #2A5A40, #1E3828); -fx-border-color: #3A6A50; }
+.dark .legend-chip-occupied     { -fx-background-color: #1E4A30; -fx-border-color: #2E6A40; }
+.dark .legend-chip-free         { -fx-background-color: #1E3A58; -fx-border-color: #2E5A78; }
+
+/* ===== TABS ===== */
+.dark .tab-pane .tab-header-background  { -fx-background-color: #252B42; }
+.dark .tab-pane .tab                    { -fx-background-color: #2E3560; }
+.dark .tab-pane .tab .tab-label         { -fx-text-fill: #8895C0; }
+.dark .tab-pane .tab:selected           { -fx-background-color: #2A4A7A; }
+.dark .tab-pane .tab:selected .tab-label { -fx-text-fill: #60D0E0; -fx-font-weight: bold; }
+
+/* ===== SCROLLBARS ===== */
+.dark .scroll-bar                               { -fx-background-color: #1E2235; }
+.dark .scroll-bar .thumb                        { -fx-background-color: #363D60; -fx-background-radius: 4; }
+.dark .scroll-bar .thumb:hover                  { -fx-background-color: #60D0E0; }
+.dark .scroll-bar .track,
+.dark .scroll-bar .track-background             { -fx-background-color: #1A1F38; }
+.dark .scroll-bar .increment-button,
+.dark .scroll-bar .decrement-button             { -fx-background-color: #1E2235; }
+
+/* ===== MISC ===== */
+.dark .separator .line          { -fx-border-color: #363D60; }
+.dark .calendar-strip-active    { -fx-background-color: #2A5A7A; }
+.dark .calendar-strip-active .calendar-strip-day-name,
+.dark .calendar-strip-active .calendar-strip-day-num { -fx-text-fill: #FFFFFF; }
+.dark .calendar-strip-normal:hover  { -fx-background-color: #2A3060; }
+.dark .calendar-strip-day-name  { -fx-text-fill: #6070A8; }
+.dark .calendar-strip-day-num   { -fx-text-fill: #C0CCEE; }
+.dark .planning-time-label      { -fx-text-fill: #6070A8; }
+.dark .planning-task-label      { -fx-text-fill: #C0CCEE; }
+.dark .planning-item-row        { -fx-border-color: transparent transparent #363D60 transparent; }
+
+/* ===== BUTTONS ===== */
+.dark .btn-primary              { -fx-background-color: #2A6A88; -fx-text-fill: #FFFFFF; }
+.dark .btn-primary:hover        { -fx-background-color: #3A8AAA; }
+.dark .btn-success              { -fx-background-color: #286840; -fx-text-fill: #FFFFFF; }
+.dark .btn-danger               { -fx-background-color: #6A2030; -fx-text-fill: #FF9090; }
+.dark .btn-warning              { -fx-background-color: #6A4018; -fx-text-fill: #FFBA60; }
+.dark .btn-secondary            { -fx-background-color: #363D60; -fx-text-fill: #C0CCEE; }
+.dark .btn-outline              { -fx-background-color: transparent; -fx-border-color: #3A4272; -fx-text-fill: #8895C0; }
+.dark .btn-outline:hover        { -fx-background-color: #2E3560; -fx-border-color: #60D0E0; }
+.dark .btn-reset-modern         { -fx-background-color: #363D60; -fx-text-fill: #C0CCEE; }
+.dark .btn-codification-modern  { -fx-background-color: linear-gradient(to right, #2A6A88, #3A8AAA); -fx-text-fill: #FFFFFF; }
+.dark .dashboard-shortcut-btn   { -fx-background-color: #2E3560; -fx-text-fill: #60D0E0; -fx-border-color: #3A4272; }
+.dark .dashboard-shortcut-btn:hover { -fx-background-color: #2A4A7A; }
+
+/* ===== BADGES ===== */
+.dark .kpi-badge-teal   { -fx-background-color: #1E5A72; }
+.dark .kpi-badge-green  { -fx-background-color: #1E5A32; }
+.dark .kpi-badge-orange { -fx-background-color: #5A3A12; }
+.dark .kpi-badge-purple { -fx-background-color: #3A286A; }
+.dark .traffic-bar-bg         { -fx-background-color: #2E3560; }
+.dark .traffic-bar-fill-teal  { -fx-background-color: #5BC8D8; }
+.dark .traffic-bar-fill-green { -fx-background-color: #6DEEA0; }
+.dark .traffic-bar-fill-orange { -fx-background-color: #FFB060; }
+.dark .traffic-bar-fill-purple { -fx-background-color: #A890FA; }
+
+/* ===== ALERTS ===== */
+.dark .alert-card-modern        { -fx-background-color: #3A1A28; -fx-border-color: transparent transparent transparent #E53E3E; }
+.dark .alert-card-modern-title  { -fx-text-fill: #FF9090; }
+.dark .alert-card-modern-desc   { -fx-text-fill: #8895C0; }
+
+/* ===== DIALOG ===== */
+.dark .dialog-pane                          { -fx-background-color: #252B42; -fx-border-color: #363D60; }
+.dark .dialog-pane .header-panel            { -fx-background-color: #1A1F38; }
+.dark .dialog-pane .header-panel .label     { -fx-text-fill: #E8EAF8; }
+.dark .dialog-pane .content                 { -fx-background-color: #252B42; }
+.dark .dialog-pane .content .label          { -fx-text-fill: #C0CCEE; }
+.dark .dialog-pane .button-bar .container   { -fx-background-color: #252B42; }
+.dark .dialog-pane .button-bar .button      { -fx-background-color: #2E3560; -fx-text-fill: #C0CCEE; -fx-border-color: #3A4272; }
+.dark .dialog-pane .button-bar .button:hover { -fx-background-color: #2A4A7A; }
+
+/* ===== CHECKBOX ===== */
+.dark .check-box .box           { -fx-background-color: #2E3560; -fx-border-color: #3A4272; }
+.dark .check-box:selected .box  { -fx-background-color: #60D0E0; }
+.dark .check-box .mark          { -fx-background-color: #1A1F38; }
+.dark .check-box .label         { -fx-text-fill: #C0CCEE; }
+/* =====================================================
+   AGGRESSIVE OVERRIDES - targets inline white styles
+   These beat style="...#ffffff..." on child nodes
+   ===================================================== */
+
+/* Force ALL VBox/HBox/Pane backgrounds to dark inside content */
+.dark .content-area VBox     { -fx-background-color: #1E2235 !important; }
+.dark .content-area HBox     { -fx-background-color: transparent !important; }
+.dark .content-area StackPane { -fx-background-color: transparent !important; }
+.dark .content-area GridPane { -fx-background-color: transparent !important; }
+.dark .content-area AnchorPane { -fx-background-color: #1E2235 !important; }
+
+/* White cards inside scroll panes (Top Clients, Top Programmes etc) */
+.dark ScrollPane VBox        { -fx-background-color: #1E2235 !important; }
+.dark ScrollPane .viewport   { -fx-background-color: #1E2235 !important; -fx-background: #1E2235 !important; }
+.dark ScrollPane             { -fx-background-color: #1E2235 !important; -fx-background: #1E2235 !important; }
+
+/* Any VBox with white or light background color inline */
+.dark VBox                   { -fx-background-color: #1E2235 !important; }
+.dark HBox                   { -fx-background-color: transparent !important; }
+
+/* BUT restore cards that need a lighter shade */
+.dark .kpi-card              { -fx-background-color: #252B42 !important; }
+.dark .stats-card            { -fx-background-color: #252B42 !important; }
+.dark .dashboard-card        { -fx-background-color: #252B42 !important; }
+.dark .dashboard-header-card { -fx-background-color: #252B42 !important; }
+.dark .dashboard-widget-card { -fx-background-color: #252B42 !important; }
+.dark .suivi-header-card     { -fx-background-color: #252B42 !important; }
+.dark .suivi-filter-card     { -fx-background-color: #252B42 !important; }
+.dark .detail-panel          { -fx-background-color: #252B42 !important; }
+.dark .sidebar-category      { -fx-background-color: #252B42 !important; }
+.dark .header-modern         { -fx-background-color: #252B42 !important; }
+
+/* Force ALL text to be light */
+.dark VBox .label            { -fx-text-fill: #E0E6F8 !important; }
+.dark HBox .label            { -fx-text-fill: #E0E6F8 !important; }
+.dark GridPane .label        { -fx-text-fill: #E0E6F8 !important; }
+.dark StackPane .label       { -fx-text-fill: #E0E6F8 !important; }
+.dark ScrollPane .label      { -fx-text-fill: #E0E6F8 !important; }
+.dark AnchorPane .label      { -fx-text-fill: #E0E6F8 !important; }
+.dark Label                  { -fx-text-fill: #E0E6F8 !important; }
+
+/* Dashboard containers */
+.dark .dashboard-container   { -fx-background-color: #1E2235 !important; }
+
+/* Top Clients / Top Programmes cards specifically */
+.dark .chart-card-teal       { -fx-background-color: linear-gradient(to bottom right, #2A4A6A, #1E3050) !important; }
+.dark .chart-card-teal .label { -fx-text-fill: #FFFFFF !important; }
+/* =============================================================
+   TARGETED FIXES for remaining white/invisible elements
+   ============================================================= */
+
+/* All generic nodes inside content get dark bg */
+.dark .content-area VBox     { -fx-background-color: #1E2235 !important; }
+.dark .content-area HBox     { -fx-background-color: transparent !important; }
+.dark .content-area GridPane { -fx-background-color: transparent !important; }
+.dark .content-area StackPane { -fx-background-color: transparent !important; }
+.dark .content-area AnchorPane { -fx-background-color: #1E2235 !important; }
+.dark .content-area ScrollPane { -fx-background-color: #1E2235 !important; -fx-background: #1E2235 !important; }
+.dark .content-area ScrollPane .viewport { -fx-background-color: #1E2235 !important; }
+
+/* All labels inside content must be light */
+.dark .content-area Label    { -fx-text-fill: #E0E6F8 !important; }
+.dark .content-area .label   { -fx-text-fill: #E0E6F8 !important; }
+
+/* Restore cards that need slightly lighter bg */
+.dark .kpi-card,
+.dark .stats-card,
+.dark .dashboard-card,
+.dark .dashboard-widget-card,
+.dark .dashboard-header-card,
+.dark .chart-card-teal,
+.dark .suivi-header-card,
+.dark .suivi-filter-card,
+.dark .historique-card { -fx-background-color: #252B42 !important; -fx-border-color: #363D60 !important; }
+
+/* Search field in DetailsClient and other views */
+.dark .content-area TextField  { -fx-background-color: #2E3560 !important; -fx-border-color: #3A4272 !important; -fx-text-fill: #E8EAF8 !important; -fx-prompt-text-fill: #5868A0 !important; }
+.dark .content-area PasswordField { -fx-background-color: #2E3560 !important; -fx-text-fill: #E8EAF8 !important; }
+
+/* Badges/labels that show as white rectangles (text is dark on them) */
+.dark .content-area Label[style*="background-color"] { -fx-text-fill: #FFFFFF !important; }
+
+/* Planning table white bg */
+.dark .content-area TableView { -fx-background-color: #252B42 !important; -fx-border-color: #363D60 !important; }
+.dark .content-area .table-row-cell { -fx-background-color: #252B42 !important; -fx-text-fill: #D0D8F8 !important; }
+.dark .content-area .table-row-cell:odd { -fx-background-color: #202640 !important; }
+.dark .content-area .table-row-cell .text { -fx-fill: #D0D8F8 !important; }
+
+/* Permissions checkboxes */
+.dark .content-area CheckBox .box { -fx-background-color: #2E3560 !important; -fx-border-color: #3A4272 !important; }
+.dark .content-area CheckBox:selected .box { -fx-background-color: #60D0E0 !important; }
+.dark .content-area CheckBox .mark { -fx-background-color: #1A1F38 !important; }
+
+/* Tab pane white bg */
+.dark TabPane { -fx-background-color: transparent !important; }
+.dark .tab-content-area { -fx-background-color: #1E2235 !important; }
+
+/* Spinner white */
+.dark Spinner { -fx-background-color: #2E3560 !important; }
+.dark Spinner .text-field { -fx-background-color: #2E3560 !important; -fx-text-fill: #E8EAF8 !important; -fx-border-color: #3A4272 !important; }
+
+/* "No content in table" text */
+.dark .table-view .placeholder .label { -fx-text-fill: #8895C0 !important; }

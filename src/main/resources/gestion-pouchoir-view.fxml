@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.GestionPouchoirController"
+            styleClass="armoire-container"
+            prefWidth="Infinity"
+            prefHeight="Infinity"
+            maxWidth="Infinity"
+            maxHeight="Infinity">
+
+    <center>
+        <VBox spacing="14" style="-fx-padding: 20 24 20 20; -fx-background-color: #F8FAFC;">
+            <!-- Header Section -->
+            <HBox alignment="CENTER_LEFT" spacing="16" styleClass="suivi-header-card">
+                <Button text="← Retour" onAction="#handleRetour" styleClass="btn-reset-modern"
+                        onMouseEntered="#onRetourButtonHover" onMouseExited="#onRetourButtonExit"/>
+                <VBox spacing="2">
+                    <Label styleClass="armoire-title" text="Gestion et Inventaire des Pochoirs"/>
+                    <Label text="Base de données centrale des pochoirs, programmes et mouvements" style="-fx-text-fill: #6F8D94; -fx-font-size: 12px;"/>
+                </VBox>
+                <Region HBox.hgrow="ALWAYS"/>
+                <HBox spacing="10" alignment="CENTER">
+                    <Label fx:id="totalLabel" text="Total: 0" styleClass="selected-emp-badge"/>
+                    <Label fx:id="disponiblesLabel" text="🟢 Disponibles: 0" style="-fx-text-fill: #46BE62; -fx-font-weight: bold; -fx-font-size: 11px;"/>
+                    <Label fx:id="sortisLabel" text="🔴 Sortis: 0" style="-fx-text-fill: #D9691D; -fx-font-weight: bold; -fx-font-size: 11px;"/>
+                </HBox>
+            </HBox>
+
+            <!-- Barre d'actions et de recherche -->
+            <HBox spacing="12" alignment="CENTER_LEFT" styleClass="suivi-filter-card">
+                <HBox alignment="CENTER_LEFT" spacing="8" HBox.hgrow="ALWAYS" styleClass="suivi-search-box">
+                    <Label text="🔍" style="-fx-font-size: 13px; -fx-opacity: 0.7;"/>
+                    <TextField fx:id="searchField" promptText="Rechercher par référence, programme ou racle..."
+                               HBox.hgrow="ALWAYS" styleClass="suivi-search-input"/>
+                </HBox>
+
+                <Button text="➕ Nouveau Pochoir" onAction="#handleAdd" styleClass="btn-primary"/>
+                <Button text="🔄 Réinitialiser" onAction="#handleRefresh" styleClass="btn-reset-modern"/>
+            </HBox>
+
+            <!-- Grille des cartes pochoirs -->
+            <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" styleClass="armoire-scrollpane">
+                <TilePane fx:id="cardContainer"
+                          prefColumns="4"
+                          alignment="TOP_LEFT"
+                          hgap="14" vgap="14">
+                    <padding>
+                        <Insets top="4" right="4" bottom="4" left="4"/>
+                    </padding>
+                </TilePane>
+            </ScrollPane>
+        </VBox>
+    </center>
+</BorderPane>

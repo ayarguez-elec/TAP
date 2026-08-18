@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="controller.ModifierProduitController"
+      spacing="0"
+      alignment="TOP_CENTER"
+      style="-fx-background-color: #f0f2f5;"
+      prefWidth="Infinity"
+      prefHeight="Infinity">
+
+    <!-- HEADER -->
+    <VBox style="-fx-background-color: #ffffff;
+                 -fx-padding: 10 25;
+                 -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.12), 8, 0, 0, 2);">
+
+        <HBox alignment="CENTER_LEFT" spacing="12">
+            <Button text="← Retour" onAction="#handleRetour"
+                    style="-fx-background-color: rgba(255,255,255,0.15);
+                           -fx-text-fill: #ffffff;
+                           -fx-font-weight: bold;
+                           -fx-padding: 5 14;
+                           -fx-border-radius: 5;
+                           -fx-background-radius: 5;
+                           -fx-cursor: hand;
+                           -fx-font-size: 11px;
+                           -fx-border-color: rgba(255,255,255,0.15);
+                           -fx-border-width: 1;"/>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <VBox alignment="CENTER_RIGHT">
+                <Label text="Modifier le produit"
+                       style="-fx-text-fill: #ffffff;
+                              -fx-font-size: 16px;
+                              -fx-font-weight: bold;
+                              -fx-letter-spacing: 1px;"/>
+                <Label fx:id="produitInfoLabel" text="Produit : "
+                       style="-fx-text-fill: #6F8D94; -fx-font-size: 10px; -fx-font-weight: 300;"/>
+            </VBox>
+        </HBox>
+    </VBox>
+
+    <!-- CORPS -->
+    <VBox spacing="10" alignment="TOP_CENTER" style="-fx-padding: 18 25; -fx-background-color: #f0f2f5;">
+
+        <!-- Carte formulaire -->
+        <VBox spacing="10" style="-fx-background-color: #ffffff;
+                                  -fx-border-radius: 8;
+                                  -fx-background-radius: 8;
+                                  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 8, 0, 0, 2);
+                                  -fx-padding: 15 25 18 25;"
+              maxWidth="650" prefWidth="650">
+
+            <HBox alignment="CENTER_LEFT" spacing="6">
+                <Rectangle width="2.5" height="16" fill="#3A98A5" arcWidth="2" arcHeight="2"/>
+                <Label text="Informations du produit"
+                       style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #21262A;"/>
+            </HBox>
+
+            <Separator style="-fx-background-color: #e8eaee;"/>
+
+            <GridPane hgap="12" vgap="8" alignment="CENTER" style="-fx-padding: 3 0 3 0;">
+
+                <columnConstraints>
+                    <ColumnConstraints prefWidth="115" minWidth="115" maxWidth="115" halignment="RIGHT"/>
+                    <ColumnConstraints prefWidth="380" hgrow="ALWAYS"/>
+                </columnConstraints>
+
+                <!-- Ligne 0 : ID (caché) -->
+                <Label text="ID" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 11.5px;"
+                       GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="idField"
+                           style="-fx-padding: 6 10; -fx-border-radius: 4; -fx-background-radius: 4;
+                                  -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                  -fx-background-color: #e8eaee; -fx-text-fill: #666;"
+                           editable="false"
+                           GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                <!-- Ligne 1 : Nom du produit -->
+                <Label text="Nom du produit" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 11.5px;"
+                       GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <TextField fx:id="nomField" promptText="Ex: Emballage Premium"
+                           style="-fx-padding: 6 10; -fx-border-radius: 4; -fx-background-radius: 4;
+                                  -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                  -fx-background-color: #fafbfc;"
+                           GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                <!-- Ligne 2 : Pouchoir (référence) -->
+                <Label text="Pouchoir" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 11.5px;"
+                       GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <HBox spacing="8" alignment="CENTER_LEFT" GridPane.rowIndex="2" GridPane.columnIndex="1">
+                    <ComboBox fx:id="ecranCombo" promptText="Sélectionner un pouchoir"
+                              style="-fx-padding: 4 8; -fx-border-radius: 4; -fx-background-radius: 4;
+                                     -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 11px;
+                                     -fx-background-color: #fafbfc;"
+                              prefWidth="200"
+                              onAction="#handleEcranSelected"/>
+                    <Label text="Nouveau pouchoir ?" style="-fx-text-fill: #3A98A5; -fx-font-size: 10px; -fx-cursor: hand; -fx-underline: true;"
+                           onMouseClicked="#handleNewEcran"/>
+                </HBox>
+
+                <!-- Ligne 3 : Programme (auto-rempli) -->
+                <Label text="Programme" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 11.5px;"
+                       GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                <TextField fx:id="programmeField"
+                           style="-fx-padding: 6 10; -fx-border-radius: 4; -fx-background-radius: 4;
+                                  -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                  -fx-background-color: #e8eaee; -fx-text-fill: #666;"
+                           editable="false"
+                           GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+                <!-- Ligne 4 : Racle (auto-rempli) -->
+                <Label text="Racle" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 11.5px;"
+                       GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                <TextField fx:id="racleField"
+                           style="-fx-padding: 6 10; -fx-border-radius: 4; -fx-background-radius: 4;
+                                  -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                  -fx-background-color: #e8eaee; -fx-text-fill: #666;"
+                           editable="false"
+                           GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+                <!-- Ligne 5 : Client (lecture seule) -->
+                <Label text="Client" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 11.5px;"
+                       GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                <TextField fx:id="clientField"
+                           style="-fx-padding: 6 10; -fx-border-radius: 4; -fx-background-radius: 4;
+                                  -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                  -fx-background-color: #e8eaee; -fx-text-fill: #666;"
+                           editable="false"
+                           GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+            </GridPane>
+
+            <HBox spacing="12" alignment="CENTER" style="-fx-padding: 8 0 0 0;">
+                <Button text="Annuler" onAction="#handleAnnuler"
+                        style="-fx-background-color: #e8eaee;
+                               -fx-text-fill: #6F8D94;
+                               -fx-font-weight: bold;
+                               -fx-padding: 5 22;
+                               -fx-border-radius: 4;
+                               -fx-background-radius: 4;
+                               -fx-cursor: hand;
+                               -fx-font-size: 11px;"/>
+                <Button text="Modifier" onAction="#handleValider"
+                        style="-fx-background-color: #3A98A5;
+                               -fx-text-fill: #ffffff;
+                               -fx-font-weight: bold;
+                               -fx-padding: 5 22;
+                               -fx-border-radius: 4;
+                               -fx-background-radius: 4;
+                               -fx-cursor: hand;
+                               -fx-font-size: 11px;
+                               -fx-effect: dropshadow(gaussian, rgba(58,152,165,0.25), 4, 0, 0, 2);"/>
+            </HBox>
+
+        </VBox>
+
+    </VBox>
+</VBox>

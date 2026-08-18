@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.HistoriqueController"
+            style="-fx-background-color: #F8FAFC;"
+            prefHeight="700.0" prefWidth="1000.0">
+
+    <center>
+        <VBox spacing="16" style="-fx-padding: 20 24 20 24; -fx-background-color: #F8FAFC;">
+            <!-- Header Section Carte Moderne -->
+            <HBox alignment="CENTER_LEFT" spacing="16" styleClass="suivi-header-card">
+                <VBox spacing="3" HBox.hgrow="ALWAYS">
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <Label text="📜" style="-fx-font-size: 20px;"/>
+                        <Label text="Historique &amp; Traçabilité" styleClass="armoire-title"/>
+                    </HBox>
+                    <Label text="Consultation des mouvements de pochoirs et des journaux d'audit du système" style="-fx-text-fill: #6F8D94; -fx-font-size: 12px;"/>
+                </VBox>
+                
+                <HBox spacing="10" alignment="CENTER">
+                    <HBox spacing="8" alignment="CENTER" style="-fx-background-color: #F1F5F9; -fx-padding: 6 14; -fx-background-radius: 20; -fx-border-color: #E2E8F0; -fx-border-radius: 20;">
+                        <Label text="👤" style="-fx-font-size: 12px;"/>
+                        <Label text="Utilisateur :" style="-fx-font-weight: bold; -fx-font-size: 12px; -fx-text-fill: #384B52;"/>
+                        <Label fx:id="userLabel" text="Aucun" style="-fx-text-fill: #346771; -fx-font-weight: bold; -fx-font-size: 12px;"/>
+                    </HBox>
+                    <Button text="🔄 Rafraîchir" onAction="#handleRefresh" styleClass="btn-primary"/>
+                </HBox>
+            </HBox>
+
+            <!-- Contenu Onglets -->
+            <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+                
+                <!-- Onglet 1: Historique Pochoirs -->
+                <Tab text="Historique Pochoirs">
+                    <VBox spacing="12">
+                        <padding>
+                            <Insets top="12" right="0" bottom="0" left="0"/>
+                        </padding>
+                        
+                        <!-- Barre de Filtres Pochoir Carte -->
+                        <HBox spacing="12" alignment="CENTER_LEFT" styleClass="suivi-filter-card">
+                            <HBox alignment="CENTER_LEFT" spacing="8" HBox.hgrow="ALWAYS" styleClass="suivi-search-box">
+                                <Label text="🔍" style="-fx-font-size: 13px; -fx-opacity: 0.7;"/>
+                                <TextField fx:id="pouchoirFilterField" promptText="Rechercher par référence pochoir..."
+                                           HBox.hgrow="ALWAYS" styleClass="suivi-search-input" onAction="#handleFilterPochoir"/>
+                            </HBox>
+                            
+                            <HBox spacing="6" alignment="CENTER">
+                                <Label text="Action :" styleClass="suivi-filter-label"/>
+                                <ComboBox fx:id="actionFilterCombo" prefWidth="120" styleClass="suivi-combo" onAction="#handleFilterPochoir"/>
+                            </HBox>
+                            
+                            <Button text="Filtrer" onAction="#handleFilterPochoir" styleClass="btn-primary"/>
+                            <Button text="Réinitialiser" onAction="#handleResetFilterPochoir" styleClass="btn-reset-modern"/>
+                            
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <Label fx:id="pouchoirCountLabel" text="0 enregistrements" styleClass="selected-emp-badge"/>
+                        </HBox>
+                        
+                        <!-- Table Historique -->
+                        <VBox VBox.vgrow="ALWAYS" styleClass="historique-card">
+                            <padding>
+                                <Insets top="10" right="10" bottom="10" left="10"/>
+                            </padding>
+                            <TableView fx:id="historiquePochoirTable" VBox.vgrow="ALWAYS" styleClass="historique-table">
+                                <columns>
+                                    <TableColumn fx:id="colPouchoirRef" text="Ref. Pochoir" prefWidth="130"/>
+                                    <TableColumn fx:id="colAction" text="Action" prefWidth="90"/>
+                                    <TableColumn fx:id="colDateSortie" text="Date Sortie" prefWidth="150"/>
+                                    <TableColumn fx:id="colDateRetour" text="Date Retour" prefWidth="150"/>
+                                    <TableColumn fx:id="colOperateur" text="Opérateur" prefWidth="130"/>
+                                    <TableColumn fx:id="colLocalisation" text="Localisation" prefWidth="110"/>
+                                    <TableColumn fx:id="colRaison" text="Raison" prefWidth="130"/>
+                                    <TableColumn fx:id="colEtatRetour" text="État Retour" prefWidth="110"/>
+                                </columns>
+                                <columnResizePolicy>
+                                    <TableView fx:constant="UNCONSTRAINED_RESIZE_POLICY"/>
+                                </columnResizePolicy>
+                            </TableView>
+                        </VBox>
+                        
+                        <!-- Card Remarques -->
+                        <VBox spacing="6" styleClass="historique-filter-card">
+                            <Label text="📝 Remarques / Observations :" style="-fx-font-weight: bold; -fx-text-fill: #346771; -fx-font-size: 12px;"/>
+                            <TextArea fx:id="remarquesArea" editable="false" prefHeight="70" wrapText="true" 
+                                      style="-fx-background-color: #F8FAFC; -fx-border-color: #CBD5E1; -fx-border-radius: 8; -fx-background-radius: 8;"/>
+                        </VBox>
+                    </VBox>
+                </Tab>
+                
+                <!-- Onglet 2: Journal d'Audit -->
+                <Tab text="Journal d'Audit">
+                    <VBox spacing="12">
+                        <padding>
+                            <Insets top="12" right="0" bottom="0" left="0"/>
+                        </padding>
+                        
+                        <!-- Barre de Filtres Audit Carte -->
+                        <HBox spacing="12" alignment="CENTER_LEFT" styleClass="suivi-filter-card">
+                            <HBox spacing="6" alignment="CENTER">
+                                <Label text="Utilisateur :" styleClass="suivi-filter-label"/>
+                                <ComboBox fx:id="utilisateurFilterCombo" prefWidth="140" styleClass="suivi-combo" onAction="#handleFilterAudit"/>
+                            </HBox>
+                            
+                            <HBox spacing="6" alignment="CENTER">
+                                <Label text="Action :" styleClass="suivi-filter-label"/>
+                                <ComboBox fx:id="actionAuditFilterCombo" prefWidth="130" styleClass="suivi-combo" onAction="#handleFilterAudit"/>
+                            </HBox>
+                            
+                            <HBox alignment="CENTER_LEFT" spacing="8" HBox.hgrow="ALWAYS" styleClass="suivi-search-box">
+                                <Label text="🔍" style="-fx-font-size: 13px; -fx-opacity: 0.7;"/>
+                                <TextField fx:id="tableFilterField" promptText="Filtrer par table..."
+                                           HBox.hgrow="ALWAYS" styleClass="suivi-search-input" onAction="#handleFilterAudit"/>
+                            </HBox>
+                            
+                            <Button text="Filtrer" onAction="#handleFilterAudit" styleClass="btn-primary"/>
+                            <Button text="Réinitialiser" onAction="#handleResetFilterAudit" styleClass="btn-reset-modern"/>
+                            
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <Label fx:id="auditCountLabel" text="0 enregistrements" styleClass="selected-emp-badge"/>
+                        </HBox>
+                        
+                        <!-- Table Audit -->
+                        <VBox VBox.vgrow="ALWAYS" styleClass="historique-card">
+                            <padding>
+                                <Insets top="10" right="10" bottom="10" left="10"/>
+                            </padding>
+                            <TableView fx:id="auditLogTable" VBox.vgrow="ALWAYS" styleClass="historique-table">
+                                <columns>
+                                    <TableColumn fx:id="colAuditDate" text="Date / Heure" prefWidth="160"/>
+                                    <TableColumn fx:id="colAuditUtilisateur" text="Utilisateur" prefWidth="130"/>
+                                    <TableColumn fx:id="colAuditAction" text="Action" prefWidth="110"/>
+                                    <TableColumn fx:id="colAuditTable" text="Table Affectée" prefWidth="130"/>
+                                    <TableColumn fx:id="colAuditRecordId" text="ID Record" prefWidth="90"/>
+                                    <TableColumn fx:id="colAuditDetails" text="Détails de l'événement" prefWidth="350"/>
+                                </columns>
+                                <columnResizePolicy>
+                                    <TableView fx:constant="UNCONSTRAINED_RESIZE_POLICY"/>
+                                </columnResizePolicy>
+                            </TableView>
+                        </VBox>
+                    </VBox>
+                </Tab>
+                
+            </TabPane>
+            
+            <!-- Pied de Page / Actions -->
+            <HBox spacing="12" alignment="CENTER_RIGHT" style="-fx-padding: 4 0 0 0;">
+                <Button text="📥 Exporter CSV" onAction="#handleExport" styleClass="btn-primary"/>
+            </HBox>
+        </VBox>
+    </center>
+    
+</BorderPane>

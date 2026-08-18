@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.SVGPath?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.PermissionsController"
+            style="-fx-background-color: #F8FAFC;"
+            prefHeight="700.0" prefWidth="1000.0">
+
+    <center>
+        <VBox spacing="16" style="-fx-padding: 20 24 20 24; -fx-background-color: #F8FAFC;">
+            <!-- Header Section Carte Moderne -->
+            <HBox alignment="CENTER_LEFT" spacing="16" styleClass="suivi-header-card">
+                <VBox spacing="3" HBox.hgrow="ALWAYS">
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <Label text="🛡️" style="-fx-font-size: 20px;"/>
+                        <Label text="Gestion des Permissions &amp; Habilitations" styleClass="armoire-title"/>
+                    </HBox>
+                    <Label text="Contrôlez les privilèges d'accès par rôle ou par utilisateur individuel" style="-fx-text-fill: #6F8D94; -fx-font-size: 12px;"/>
+                </VBox>
+                <Button text="💾 Sauvegarder" onAction="#handleSave" styleClass="btn-primary"/>
+            </HBox>
+
+            <!-- Contenu Principal -->
+            <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+
+                <!-- Onglet 1: Permissions des Rôles -->
+                <Tab text="👥 Habilitations des Rôles">
+                    <VBox spacing="12">
+                        <padding>
+                            <Insets top="12" right="0" bottom="0" left="0"/>
+                        </padding>
+
+                        <VBox VBox.vgrow="ALWAYS" styleClass="historique-card">
+                            <Label text="Matrice d'accès par rôle" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #21262A; -fx-padding: 0 0 10 0;"/>
+                            <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" style="-fx-background-color: transparent; -fx-border-color: transparent;">
+                                <GridPane fx:id="rolesMatrixGrid" hgap="15" vgap="12" style="-fx-padding: 10 0 0 0;">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="ALWAYS" minWidth="220" prefWidth="280"/>
+                                        <ColumnConstraints hgrow="NEVER" minWidth="100" prefWidth="110" halignment="CENTER"/>
+                                        <ColumnConstraints hgrow="NEVER" minWidth="100" prefWidth="110" halignment="CENTER"/>
+                                        <ColumnConstraints hgrow="NEVER" minWidth="100" prefWidth="110" halignment="CENTER"/>
+                                        <ColumnConstraints hgrow="NEVER" minWidth="90" prefWidth="100" halignment="CENTER"/>
+                                        <ColumnConstraints hgrow="NEVER" minWidth="100" prefWidth="110" halignment="CENTER"/>
+                                    </columnConstraints>
+                                    <!-- Headers de colonnes générés dynamiquement en Java -->
+                                </GridPane>
+                            </ScrollPane>
+                        </VBox>
+                    </VBox>
+                </Tab>
+
+                <!-- Onglet 2: Permissions des Personnes -->
+                <Tab text="👤 Surcharges Individuelles">
+                    <HBox spacing="16">
+                        <padding>
+                            <Insets top="12" right="0" bottom="0" left="0"/>
+                        </padding>
+
+                        <!-- Panneau de gauche: Sélection Utilisateur -->
+                        <VBox spacing="10" prefWidth="280" styleClass="historique-card">
+                            <Label text="Membres du personnel" style="-fx-font-weight: bold; -fx-font-size: 13px; -fx-text-fill: #21262A;"/>
+                            <HBox alignment="CENTER_LEFT" spacing="8" styleClass="suivi-search-box">
+                                <Label text="🔍" style="-fx-font-size: 12px; -fx-opacity: 0.7;"/>
+                                <TextField fx:id="userSearchField" promptText="Rechercher un utilisateur..." HBox.hgrow="ALWAYS" styleClass="suivi-search-input"/>
+                            </HBox>
+                            <ListView fx:id="usersListView" VBox.vgrow="ALWAYS" style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #E2E8F0;"/>
+                        </VBox>
+
+                        <!-- Panneau de droite: Droits de l'utilisateur sélectionné -->
+                        <VBox spacing="10" HBox.hgrow="ALWAYS" styleClass="historique-card">
+                            <HBox alignment="CENTER_LEFT" spacing="10">
+                                <Label text="Habilitations spécifiques de :" style="-fx-font-size: 13px; -fx-text-fill: #6F8D94;"/>
+                                <Label fx:id="selectedUserLabel" text="Sélectionnez un membre..." style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #346771;"/>
+                            </HBox>
+                            <Separator/>
+
+                            <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" style="-fx-background-color: transparent; -fx-border-color: transparent;">
+                                <VBox fx:id="userOverridesContainer" spacing="12" style="-fx-padding: 10 5 0 5;">
+                                    <!-- Rempli dynamiquement en Java -->
+                                </VBox>
+                            </ScrollPane>
+                        </VBox>
+                    </HBox>
+                </Tab>
+
+            </TabPane>
+        </VBox>
+    </center>
+
+</BorderPane>

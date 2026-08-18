@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane xmlns="http://javafx.com/javafx/17"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="controller.LoginController"
+           prefWidth="500"
+           prefHeight="400"
+           stylesheets="@css/style.css"
+           style="-fx-background-color: linear-gradient(to bottom right, #346771, #3A98A5);">
+
+    <!-- Centered Login Card -->
+    <VBox alignment="CENTER" spacing="20" maxWidth="420" style="-fx-background-color: #ffffff; -fx-background-radius: 14; -fx-border-radius: 14; -fx-padding: 40 50; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 20, 0, 0, 5);">
+
+        <!-- Branding Header -->
+        <VBox alignment="CENTER" spacing="4">
+            <Label text="Lacroix Electronics" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #21262A;"/>
+            <Label text="Système de gestion industriel" style="-fx-font-size: 13px; -fx-text-fill: #6F8D94;"/>
+        </VBox>
+
+        <!-- Separator -->
+        <Region prefHeight="10"/>
+
+        <!-- Username Field -->
+        <VBox spacing="6">
+            <Label text="Nom d'utilisateur" style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #21262A;"/>
+            <TextField fx:id="usernameField"
+                       promptText="Nom d'utilisateur"
+                       styleClass="login-input"/>
+        </VBox>
+
+        <!-- Password Field -->
+        <VBox spacing="6">
+            <Label text="Mot de passe" style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #21262A;"/>
+            <PasswordField fx:id="passwordField"
+                           promptText="Mot de passe"
+                           styleClass="login-input"/>
+        </VBox>
+
+        <!-- Login Button -->
+        <Button fx:id="btnLogin"
+                text="Se connecter"
+                onAction="#handleLogin"
+                maxWidth="Infinity"
+                styleClass="login-button"/>
+
+        <!-- Error Label -->
+        <Label fx:id="errorLabel"
+               text=""
+               visible="false"
+               styleClass="login-error"/>
+
+        <padding>
+            <Insets top="40" right="50" bottom="40" left="50"/>
+        </padding>
+    </VBox>
+</StackPane>

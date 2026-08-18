@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.AdminUtilisateursController"
+            styleClass="armoire-container"
+            prefWidth="Infinity"
+            prefHeight="Infinity"
+            maxWidth="Infinity"
+            maxHeight="Infinity">
+
+    <center>
+        <VBox spacing="14" style="-fx-padding: 20 24 20 20; -fx-background-color: #F8FAFC;">
+            <!-- Header Section -->
+            <HBox alignment="CENTER_LEFT" spacing="16" styleClass="suivi-header-card">
+                <VBox spacing="2">
+                    <Label styleClass="armoire-title" text="Gestion des Utilisateurs"/>
+                    <Label text="Administration des comptes utilisateurs - Accès réservé aux ingénieurs"
+                           style="-fx-text-fill: #6F8D94; -fx-font-size: 12px;"/>
+                </VBox>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label fx:id="totalLabel" text="Total: 0 utilisateur(s)" styleClass="selected-emp-badge"/>
+            </HBox>
+
+            <!-- Barre d'actions et de recherche -->
+            <HBox spacing="12" alignment="CENTER_LEFT" styleClass="suivi-filter-card">
+                <HBox alignment="CENTER_LEFT" spacing="8" HBox.hgrow="ALWAYS" styleClass="suivi-search-box">
+                    <Label text="🔍" style="-fx-font-size: 13px; -fx-opacity: 0.7;"/>
+                    <TextField fx:id="searchField" promptText="Rechercher par nom ou username..."
+                               HBox.hgrow="ALWAYS" styleClass="suivi-search-input"/>
+                </HBox>
+
+                <Label text="Rôle:" styleClass="suivi-filter-label"/>
+                <ComboBox fx:id="roleFilterCombo" styleClass="suivi-combo" prefWidth="140"/>
+
+                <Label text="Statut:" styleClass="suivi-filter-label"/>
+                <ComboBox fx:id="statutFilterCombo" styleClass="suivi-combo" prefWidth="120"/>
+
+                <Region HBox.hgrow="ALWAYS"/>
+
+                <Button text="➕ Nouvel Utilisateur" onAction="#handleAdd" styleClass="btn-primary"/>
+                <Button text="🔄 Réinitialiser" onAction="#handleRefresh" styleClass="btn-reset-modern"/>
+            </HBox>
+
+            <!-- TableView -->
+            <TableView fx:id="tableView" VBox.vgrow="ALWAYS" styleClass="table-view">
+                <columns>
+                    <TableColumn fx:id="colId" text="ID" prefWidth="50" minWidth="50" maxWidth="50">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="id"/>
+                        </cellValueFactory>
+                    </TableColumn>
+
+                    <TableColumn fx:id="colNom" text="Nom" prefWidth="200" minWidth="150">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="nom"/>
+                        </cellValueFactory>
+                    </TableColumn>
+
+                    <TableColumn fx:id="colUsername" text="Username" prefWidth="150" minWidth="120">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="username"/>
+                        </cellValueFactory>
+                    </TableColumn>
+
+                    <TableColumn fx:id="colRole" text="Rôle" prefWidth="120" minWidth="100">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="role"/>
+                        </cellValueFactory>
+                    </TableColumn>
+
+                    <TableColumn fx:id="colActif" text="Actif" prefWidth="80" minWidth="80" maxWidth="80">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="actif"/>
+                        </cellValueFactory>
+                    </TableColumn>
+
+                    <TableColumn fx:id="colDateCreation" text="Date Création" prefWidth="150" minWidth="130">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="dateCreation"/>
+                        </cellValueFactory>
+                    </TableColumn>
+
+                    <TableColumn fx:id="colActions" text="Actions" prefWidth="250" minWidth="250" sortable="false"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+</BorderPane>

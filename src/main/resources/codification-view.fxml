@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.CodificationController"
+            prefWidth="Infinity"
+            prefHeight="Infinity"
+            maxWidth="Infinity"
+            maxHeight="Infinity"
+            style="-fx-background-color: #f0f2f5;">
+
+    <padding>
+        <Insets top="10" right="15" bottom="10" left="15"/>
+    </padding>
+
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-background-color: white; -fx-padding: 8 16; -fx-border-radius: 10; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.04), 6, 0, 0, 2);">
+
+            <Button text="← Retour" onAction="#handleRetour"
+                    style="-fx-background-color: #f0f2f5; -fx-text-fill: #21262A; -fx-font-weight: bold;
+                           -fx-padding: 5 14; -fx-border-radius: 6; -fx-background-radius: 6;
+                           -fx-cursor: hand; -fx-font-size: 11px;
+                           -fx-border-color: #d0d5dd; -fx-border-width: 1;"/>
+
+            <VBox spacing="1">
+                <Label text="⚡ Codification"
+                       style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #21262A;"/>
+                <Label text="Gérez le codage de vos stencils"
+                       style="-fx-text-fill: #6F8D94; -fx-font-size: 10px;"/>
+            </VBox>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <!-- Statistiques compactes -->
+            <HBox spacing="8" alignment="CENTER">
+                <VBox alignment="CENTER" spacing="0"
+                      style="-fx-background-color: #f8fafc; -fx-padding: 3 10; -fx-border-radius: 6; -fx-background-radius: 6;">
+                    <Label fx:id="totalLabel" text="0"
+                           style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #21262A;"/>
+                </VBox>
+                <VBox alignment="CENTER" spacing="0"
+                      style="-fx-background-color: #f0faf0; -fx-padding: 3 10; -fx-border-radius: 6; -fx-background-radius: 6;">
+                    <Label fx:id="codesLabel" text="0"
+                           style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #2E7D32;"/>
+                </VBox>
+                <VBox alignment="CENTER" spacing="0"
+                      style="-fx-background-color: #fff8e1; -fx-padding: 3 10; -fx-border-radius: 6; -fx-background-radius: 6;">
+                    <Label fx:id="enAttenteLabel" text="0"
+                           style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #F0A500;"/>
+                </VBox>
+                <VBox alignment="CENTER" spacing="0"
+                      style="-fx-background-color: #faf0f0; -fx-padding: 3 10; -fx-border-radius: 6; -fx-background-radius: 6;">
+                    <Label fx:id="nonCodesLabel" text="0"
+                           style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #D9691D;"/>
+                </VBox>
+            </HBox>
+        </HBox>
+    </top>
+
+    <center>
+        <HBox spacing="12" prefWidth="Infinity" prefHeight="Infinity" style="-fx-padding: 8 0 0 0;">
+
+            <!-- GAUCHE : Liste des pouchoirs -->
+            <VBox spacing="8" HBox.hgrow="ALWAYS" prefHeight="Infinity">
+
+                <!-- Barre de recherche -->
+                <HBox spacing="10" alignment="CENTER_LEFT"
+                      style="-fx-background-color: white; -fx-padding: 2 14; -fx-border-radius: 10; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.04), 6, 0, 0, 2);">
+                    <Label text="🔍" style="-fx-font-size: 14px; -fx-text-fill: #6F8D94;"/>
+                    <TextField fx:id="searchField" promptText="Rechercher..."
+                               style="-fx-background-color: transparent; -fx-padding: 6 0; -fx-font-size: 12px; -fx-text-fill: #21262A;"
+                               HBox.hgrow="ALWAYS"/>
+                    <Button text="🔄" onAction="#handleRefresh"
+                            style="-fx-background-color: transparent; -fx-text-fill: #6F8D94; -fx-font-size: 14px; -fx-cursor: hand; -fx-padding: 2 6;"/>
+                </HBox>
+
+                <!-- Actions -->
+                <HBox spacing="8" alignment="CENTER_LEFT">
+                    <Button fx:id="toggleSelectButton" text="Tout" onAction="#handleToggleSelect"
+                            style="-fx-background-color: #3A98A5; -fx-text-fill: white; -fx-font-weight: bold;
+                                   -fx-padding: 4 14; -fx-border-radius: 6; -fx-background-radius: 6;
+                                   -fx-cursor: hand; -fx-font-size: 11px;"/>
+
+                    <Label fx:id="selectedCountLabel" text="Sélectionnés: 0"
+                           style="-fx-font-size: 11px; -fx-text-fill: #6F8D94; -fx-font-weight: bold;"/>
+                </HBox>
+
+                <!-- Cartes -->
+                <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS"
+                            style="-fx-background-color: transparent; -fx-padding: 0; -fx-border-color: transparent;">
+                    <TilePane fx:id="cardContainer"
+                              prefColumns="3"
+                              prefTileWidth="200"
+                              prefTileHeight="150"
+                              alignment="TOP_LEFT"
+                              hgap="10" vgap="10"
+                              style="-fx-padding: 3 0 0 0;"/>
+                </ScrollPane>
+
+            </VBox>
+
+            <!-- DROITE : Panneau Email COMPACT -->
+            <VBox spacing="6"
+                  style="-fx-background-color: white; -fx-padding: 12; -fx-border-radius: 10; -fx-background-radius: 10;
+                         -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 8, 0, 0, 2);"
+                  maxWidth="320" minWidth="260" prefWidth="280"
+                  VBox.vgrow="ALWAYS"
+                  prefHeight="Infinity">
+
+                <!-- En-tête email compact -->
+                <HBox alignment="CENTER_LEFT" spacing="6">
+                    <Label text="📧" style="-fx-font-size: 14px;"/>
+                    <Label text="Email" style="-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #21262A;"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button text="📋 Copier" onAction="#handleCopyEmail"
+                            style="-fx-background-color: #3A98A5; -fx-text-fill: white; -fx-font-weight: bold;
+                                   -fx-padding: 2 10; -fx-border-radius: 4; -fx-background-radius: 4;
+                                   -fx-cursor: hand; -fx-font-size: 9px;"/>
+                    <Button text="📨 Envoyer" onAction="#handleMarquerEnvoye"
+                            style="-fx-background-color: #F0A500; -fx-text-fill: white; -fx-font-weight: bold;
+                                   -fx-padding: 2 10; -fx-border-radius: 4; -fx-background-radius: 4;
+                                   -fx-cursor: hand; -fx-font-size: 9px;"/>
+                </HBox>
+
+                <!-- Bouton générer compact -->
+                <Button text="📧 Générer tous (non codés)" onAction="#handleGenererTousEmails"
+                        style="-fx-background-color: #6F8D94; -fx-text-fill: white; -fx-font-weight: bold;
+                               -fx-padding: 4 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                               -fx-cursor: hand; -fx-font-size: 10px;"
+                        maxWidth="Infinity"/>
+
+                <!-- Zone email PLUS PETITE -->
+                <TextArea fx:id="detailEmailArea"
+                          prefHeight="120"
+                          VBox.vgrow="ALWAYS"
+                          wrapText="true"
+                          style="-fx-padding: 8; -fx-border-radius: 6; -fx-background-radius: 6;
+                                 -fx-border-color: #e8eaee; -fx-border-width: 1.5;
+                                 -fx-font-family: 'Consolas', monospace;
+                                 -fx-font-size: 11px;
+                                 -fx-background-color: #fafbfc;"
+                          editable="false"/>
+
+                <Separator style="-fx-padding: 2 0;"/>
+
+                <!-- Code actuel compact -->
+                <HBox alignment="CENTER_LEFT" spacing="6"
+                      style="-fx-background-color: #f8fafc; -fx-padding: 4 10; -fx-border-radius: 6; -fx-background-radius: 6;">
+                    <Label text="🔑" style="-fx-font-size: 12px;"/>
+                    <Label text="Code:" style="-fx-font-size: 10px; -fx-font-weight: bold; -fx-text-fill: #21262A;"/>
+                    <Label fx:id="codeDisplayLabel" text="-"
+                           style="-fx-font-size: 10px; -fx-text-fill: #2E7D32; -fx-font-weight: bold;"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button fx:id="btnModifierCode" text="✏" onAction="#handleModifierCode"
+                            style="-fx-background-color: transparent; -fx-text-fill: #3A98A5; -fx-font-weight: bold;
+                                   -fx-padding: 1 6; -fx-border-radius: 4; -fx-background-radius: 4;
+                                   -fx-cursor: hand; -fx-font-size: 11px;
+                                   -fx-border-color: #3A98A5; -fx-border-width: 1;"/>
+                </HBox>
+
+                <!-- Panel modification code compact -->
+                <HBox fx:id="modifierCodePanel" spacing="6" visible="false" managed="false"
+                      style="-fx-padding: 6; -fx-background-color: #f0f7fa; -fx-border-radius: 6; -fx-background-radius: 6; -fx-border-color: #3A98A5; -fx-border-width: 1;">
+                    <TextField fx:id="codeModifierField" promptText="Nouveau code..."
+                               HBox.hgrow="ALWAYS"
+                               style="-fx-padding: 4 10; -fx-border-radius: 4; -fx-background-radius: 4;
+                                      -fx-border-color: #d0d5dd; -fx-border-width: 1;
+                                      -fx-background-color: white;
+                                      -fx-font-size: 10px;"
+                               prefHeight="26"/>
+                    <Button text="💾" onAction="#handleSauvegarderCode"
+                            style="-fx-background-color: #2E7D32; -fx-text-fill: white; -fx-font-weight: bold;
+                                   -fx-padding: 4 10; -fx-border-radius: 4; -fx-background-radius: 4;
+                                   -fx-cursor: hand; -fx-font-size: 10px;"/>
+                    <Button text="✕" onAction="#handleAnnulerModifCode"
+                            style="-fx-background-color: transparent; -fx-text-fill: #e74c3c; -fx-font-weight: bold;
+                                   -fx-padding: 4 8; -fx-border-radius: 4; -fx-background-radius: 4;
+                                   -fx-cursor: hand; -fx-font-size: 12px;
+                                   -fx-border-color: #e74c3c; -fx-border-width: 1;"/>
+                </HBox>
+
+                <Separator style="-fx-padding: 2 0;"/>
+
+                <!-- Codage compact -->
+                <HBox spacing="6" alignment="CENTER">
+                    <TextField fx:id="codeField" promptText="Code reçu..."
+                               HBox.hgrow="ALWAYS"
+                               style="-fx-padding: 4 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                      -fx-border-color: #d0d5dd; -fx-border-width: 1;
+                                      -fx-background-color: white;
+                                      -fx-font-size: 11px;"
+                               prefHeight="30"/>
+                    <Button fx:id="btnCoder" text="✅ Coder" onAction="#handleCoder"
+                            style="-fx-background-color: #2E7D32; -fx-text-fill: white; -fx-font-weight: bold;
+                                   -fx-padding: 4 14; -fx-border-radius: 6; -fx-background-radius: 6;
+                                   -fx-cursor: hand; -fx-font-size: 10px;"/>
+                </HBox>
+
+            </VBox>
+
+        </HBox>
+    </center>
+</BorderPane>

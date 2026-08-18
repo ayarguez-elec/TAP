@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+<ScrollPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.ProductionDashboardController"
+            fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"
+            style="-fx-background-color: #F8FAFC; -fx-background: #F8FAFC;">
+    <HBox spacing="18" style="-fx-background-color: #F8FAFC;">
+        <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+
+        <!-- PANNEAU GAUCHE (70%) -->
+        <VBox spacing="18" HBox.hgrow="ALWAYS">
+
+            <!-- Banniere accueil -->
+            <HBox styleClass="dashboard-banner" alignment="CENTER_LEFT" spacing="20">
+                <VBox spacing="8" HBox.hgrow="ALWAYS">
+                    <HBox alignment="CENTER_LEFT">
+                        <Label fx:id="lblBannerDate" text="&#128197; --" styleClass="banner-date-pill"/>
+                    </HBox>
+                    <Label fx:id="lblBannerGreeting" text="Bonjour !" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #ffffff;"/>
+                    <Label fx:id="lblBannerSubtext" text="Interface Production" style="-fx-font-size: 12px; -fx-text-fill: rgba(255,255,255,0.85);"/>
+                </VBox>
+                <javafx.scene.image.ImageView fitHeight="90" preserveRatio="true">
+                    <image>
+                        <javafx.scene.image.Image url="@image/icon.png" backgroundLoading="true"/>
+                    </image>
+                </javafx.scene.image.ImageView>
+            </HBox>
+
+            <!-- KPI Cards -->
+            <GridPane hgap="16" vgap="0">
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="25" minWidth="160"/>
+                    <ColumnConstraints percentWidth="25" minWidth="160"/>
+                    <ColumnConstraints percentWidth="25" minWidth="160"/>
+                    <ColumnConstraints percentWidth="25" minWidth="160"/>
+                </columnConstraints>
+
+                <VBox GridPane.columnIndex="0" styleClass="kpi-card" spacing="8">
+                    <padding><Insets top="16" right="16" bottom="16" left="16"/></padding>
+                    <HBox alignment="CENTER_LEFT"><Label text="Total Pochoirs" style="-fx-font-size: 12px; -fx-text-fill: #64748B;"/><Region HBox.hgrow="ALWAYS"/></HBox>
+                    <Label fx:id="kpiTotal" text="0" style="-fx-font-size: 30px; -fx-font-weight: bold; -fx-text-fill: #346771;"/>
+                    <Label text="Inventaire global" style="-fx-font-size: 11px; -fx-text-fill: #94A3B8;" wrapText="true"/>
+                    <Label fx:id="badgeTotal" text="Parc complet" wrapText="true" style="-fx-background-color: #346771; -fx-text-fill: white; -fx-padding: 4 8; -fx-background-radius: 6; -fx-font-size: 11px; -fx-font-weight: bold;"/>
+                </VBox>
+
+                <VBox GridPane.columnIndex="1" styleClass="kpi-card" spacing="8">
+                    <padding><Insets top="16" right="16" bottom="16" left="16"/></padding>
+                    <HBox alignment="CENTER_LEFT"><Label text="Disponibles" style="-fx-font-size: 12px; -fx-text-fill: #64748B;"/><Region HBox.hgrow="ALWAYS"/></HBox>
+                    <Label fx:id="kpiDispo" text="0" style="-fx-font-size: 30px; -fx-font-weight: bold; -fx-text-fill: #46BE62;"/>
+                    <Label text="En armoire de stockage" style="-fx-font-size: 11px; -fx-text-fill: #94A3B8;" wrapText="true"/>
+                    <Label fx:id="badgeDispo" text="-- %" wrapText="true" style="-fx-background-color: #46BE62; -fx-text-fill: white; -fx-padding: 4 8; -fx-background-radius: 6; -fx-font-size: 11px; -fx-font-weight: bold;"/>
+                </VBox>
+
+                <VBox GridPane.columnIndex="2" styleClass="kpi-card" spacing="8">
+                    <padding><Insets top="16" right="16" bottom="16" left="16"/></padding>
+                    <HBox alignment="CENTER_LEFT"><Label text="En Production" style="-fx-font-size: 12px; -fx-text-fill: #64748B;"/><Region HBox.hgrow="ALWAYS"/></HBox>
+                    <Label fx:id="kpiSortis" text="0" style="-fx-font-size: 30px; -fx-font-weight: bold; -fx-text-fill: #D9691D;"/>
+                    <Label text="Actuellement sur ligne" style="-fx-font-size: 11px; -fx-text-fill: #94A3B8;" wrapText="true"/>
+                    <Label fx:id="badgeSortis" text="-- %" wrapText="true" style="-fx-background-color: #D9691D; -fx-text-fill: white; -fx-padding: 4 8; -fx-background-radius: 6; -fx-font-size: 11px; -fx-font-weight: bold;"/>
+                </VBox>
+
+                <VBox GridPane.columnIndex="3" styleClass="kpi-card" spacing="8">
+                    <padding><Insets top="16" right="16" bottom="16" left="16"/></padding>
+                    <HBox alignment="CENTER_LEFT"><Label text="Anomalies Actives" style="-fx-font-size: 12px; -fx-text-fill: #64748B;"/><Region HBox.hgrow="ALWAYS"/></HBox>
+                    <Label fx:id="kpiAnomalies" text="0" style="-fx-font-size: 30px; -fx-font-weight: bold; -fx-text-fill: #E53E3E;"/>
+                    <Label text="Stencils avec problemes" style="-fx-font-size: 11px; -fx-text-fill: #94A3B8;" wrapText="true"/>
+                    <Label fx:id="badgeAnomalies" text="--" wrapText="true" style="-fx-background-color: #E53E3E; -fx-text-fill: white; -fx-padding: 4 8; -fx-background-radius: 6; -fx-font-size: 11px; -fx-font-weight: bold;"/>
+                </VBox>
+            </GridPane>
+
+            <!-- Pochoirs recents + Anomalies recentes -->
+            <GridPane hgap="16">
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="50" minWidth="180"/>
+                    <ColumnConstraints percentWidth="50" minWidth="180"/>
+                </columnConstraints>
+
+                <VBox GridPane.columnIndex="0" spacing="10"
+                      style="-fx-background-color: #ffffff; -fx-background-radius: 14; -fx-border-radius: 14; -fx-border-color: #E2E8F0; -fx-border-width: 1; -fx-effect: dropshadow(gaussian, rgba(15,23,42,0.05), 10, 0, 0, 3);">
+                    <padding><Insets top="16" right="18" bottom="16" left="18"/></padding>
+                    <HBox alignment="CENTER_LEFT" spacing="8">
+                        <VBox spacing="2"><Label text="Pochoirs Sortis" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #21262A;"/><Label text="Sur lignes de production" style="-fx-font-size: 11px; -fx-text-fill: #94A3B8;"/></VBox>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        
+                    </HBox>
+                    <Separator/>
+                    <VBox fx:id="pouchoirsSortisContainer" spacing="8"/>
+                </VBox>
+
+                <VBox GridPane.columnIndex="1" spacing="10"
+                      style="-fx-background-color: #ffffff; -fx-background-radius: 14; -fx-border-radius: 14; -fx-border-color: #E2E8F0; -fx-border-width: 1; -fx-effect: dropshadow(gaussian, rgba(15,23,42,0.05), 10, 0, 0, 3);">
+                    <padding><Insets top="16" right="18" bottom="16" left="18"/></padding>
+                    <HBox alignment="CENTER_LEFT" spacing="8">
+                        <VBox spacing="2"><Label text="Dernieres Anomalies" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #21262A;"/><Label text="Les plus recentes" style="-fx-font-size: 11px; -fx-text-fill: #94A3B8;"/></VBox>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        
+                    </HBox>
+                    <Separator/>
+                    <VBox fx:id="recentAnomaliesContainer" spacing="8"/>
+                </VBox>
+            </GridPane>
+        </VBox>
+
+        <!-- PANNEAU DROIT (30%) : Agenda -->
+        <VBox spacing="18" prefWidth="260" minWidth="240" maxWidth="260">
+            <VBox styleClass="dashboard-card" spacing="0">
+                <HBox alignment="CENTER_LEFT" spacing="10"
+                      style="-fx-background-color: #346771; -fx-background-radius: 14 14 0 0; -fx-padding: 14 16;">
+                    <Label text="MON AGENDA" style="-fx-font-weight: bold; -fx-font-size: 12px; -fx-text-fill: #ffffff;"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="calendarMonthLabel" text="--" style="-fx-font-weight: bold; -fx-font-size: 13px; -fx-text-fill: #ffffff;"/>
+                    <Button text="&#10010;" onAction="#handleAddTask"
+                            style="-fx-background-color: rgba(255,255,255,0.2); -fx-text-fill: #ffffff; -fx-font-size: 10px; -fx-font-weight: bold; -fx-background-radius: 6; -fx-cursor: hand; -fx-padding: 4 8;"/>
+                </HBox>
+                <VBox spacing="14" style="-fx-padding: 16;">
+                    <HBox fx:id="calendarDayStrip" spacing="2" alignment="CENTER"
+                          style="-fx-background-color: #F8FAFC; -fx-padding: 8 6; -fx-background-radius: 12;"/>
+                    <Label fx:id="selectedDayLabel" text="--" style="-fx-font-weight: 800; -fx-font-size: 12px; -fx-text-fill: #21262A; -fx-padding: 5 0 2 0;"/>
+                    <VBox fx:id="planningContainer" spacing="0"/>
+                </VBox>
+            </VBox>
+        </VBox>
+    </HBox>
+</ScrollPane>

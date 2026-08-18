@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<HBox xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="controller.ProductionAnomalieController"
+      spacing="0" style="-fx-background-color: #F8FAFC;">
+
+    <!-- LISTE GAUCHE -->
+    <VBox spacing="0" prefWidth="380" minWidth="340"
+          style="-fx-background-color: #ffffff; -fx-border-color: #E2E8F0; -fx-border-width: 0 1 0 0;">
+        <VBox style="-fx-padding: 14 16; -fx-border-color: #E2E8F0; -fx-border-width: 0 0 1 0;">
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label text="Pochoirs" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #21262A;"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label fx:id="totalPochoirsLabel" text="0 pochoirs"
+                       style="-fx-background-color: #EBF8F9; -fx-text-fill: #346771; -fx-font-size: 11px; -fx-font-weight: bold; -fx-padding: 3 10; -fx-background-radius: 12;"/>
+            </HBox>
+            <HBox spacing="8" alignment="CENTER_LEFT" style="-fx-padding: 10 0 4 0;">
+                <HBox spacing="6" alignment="CENTER_LEFT" HBox.hgrow="ALWAYS"
+                      style="-fx-background-color: #F8FAFC; -fx-padding: 6 12; -fx-background-radius: 8; -fx-border-color: #E2E8F0; -fx-border-width: 1; -fx-border-radius: 8;">
+                    <Label text="&#128269;" style="-fx-font-size: 12px;"/>
+                    <TextField fx:id="searchField" promptText="Ref, programme..."
+                               style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-font-size: 12px;"
+                               HBox.hgrow="ALWAYS"/>
+                </HBox>
+                <ComboBox fx:id="filterStatut" promptText="Statut"
+                          style="-fx-font-size: 11px; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #E2E8F0;"/>
+            </HBox>
+        </VBox>
+        <!-- Stats -->
+        <HBox spacing="0" style="-fx-border-color: #E2E8F0; -fx-border-width: 0 0 1 0;">
+            <VBox alignment="CENTER" HBox.hgrow="ALWAYS" style="-fx-padding: 8 0; -fx-border-color: #E2E8F0; -fx-border-width: 0 1 0 0;">
+                <Label fx:id="statDispoLabel" text="0" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #46BE62;"/>
+                <Label text="Disponibles" style="-fx-font-size: 10px; -fx-text-fill: #6F8D94;"/>
+            </VBox>
+            <VBox alignment="CENTER" HBox.hgrow="ALWAYS" style="-fx-padding: 8 0; -fx-border-color: #E2E8F0; -fx-border-width: 0 1 0 0;">
+                <Label fx:id="statSortisLabel" text="0" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #D9691D;"/>
+                <Label text="Sortis" style="-fx-font-size: 10px; -fx-text-fill: #6F8D94;"/>
+            </VBox>
+            <VBox alignment="CENTER" HBox.hgrow="ALWAYS" style="-fx-padding: 8 0;">
+                <Label fx:id="statAutresLabel" text="0" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #6F8D94;"/>
+                <Label text="Autres" style="-fx-font-size: 10px; -fx-text-fill: #6F8D94;"/>
+            </VBox>
+        </HBox>
+        <!-- Cartes -->
+        <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS"
+                    style="-fx-background-color: #F8FAFC; -fx-background: #F8FAFC; -fx-border-color: transparent;">
+            <VBox fx:id="pochoirListContainer" spacing="8" style="-fx-padding: 10;"/>
+        </ScrollPane>
+    </VBox>
+
+    <!-- DETAIL DROITE -->
+    <VBox fx:id="detailPanel" HBox.hgrow="ALWAYS" spacing="0" style="-fx-background-color: #F8FAFC;">
+
+        <!-- Etat vide -->
+        <VBox fx:id="emptyState" alignment="CENTER" spacing="12" VBox.vgrow="ALWAYS" style="-fx-padding: 40;">
+            <Label text="&#128230;" style="-fx-font-size: 48px;"/>
+            <Label text="Selectionnez un pochoir" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #21262A;"/>
+            <Label text="Cliquez sur une carte pour voir les details et signaler une anomalie"
+                   style="-fx-font-size: 13px; -fx-text-fill: #6F8D94;" wrapText="true"/>
+        </VBox>
+
+        <!-- Detail -->
+        <VBox fx:id="detailContent" spacing="0" VBox.vgrow="ALWAYS" visible="false" managed="false">
+            <!-- Header detail -->
+            <VBox style="-fx-background-color: #ffffff; -fx-padding: 16 20; -fx-border-color: #E2E8F0; -fx-border-width: 0 0 1 0; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.04), 6, 0, 0, 2);">
+                <HBox alignment="CENTER_LEFT" spacing="12">
+                    <VBox HBox.hgrow="ALWAYS" spacing="3">
+                        <Label fx:id="detailRefLabel" text="—" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #21262A;"/>
+                        <Label fx:id="detailProgLabel" text="—" style="-fx-font-size: 12px; -fx-text-fill: #6F8D94;"/>
+                    </VBox>
+                    <Label fx:id="detailStatutBadge" text="—"
+                           style="-fx-padding: 5 14; -fx-background-radius: 20; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+                    <Button text="&#9888; Signaler Anomalie" onAction="#handleSignalerAnomalie"
+                            style="-fx-background-color: #E53E3E; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 7 14; -fx-background-radius: 8; -fx-cursor: hand; -fx-font-size: 12px;"/>
+                </HBox>
+            </VBox>
+
+            <!-- Corps detail -->
+            <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS"
+                        style="-fx-background-color: #F8FAFC; -fx-background: #F8FAFC;">
+                <VBox spacing="14" style="-fx-padding: 20;">
+
+                    <!-- Infos pochoir -->
+                    <VBox spacing="10" style="-fx-background-color: #ffffff; -fx-padding: 16 20; -fx-background-radius: 12; -fx-border-radius: 12; -fx-border-color: #E2E8F0; -fx-border-width: 1; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.04), 8, 0, 0, 2);">
+                        <HBox alignment="CENTER_LEFT" spacing="8">
+                            <Rectangle width="3" height="18" fill="#3A98A5" arcWidth="2" arcHeight="2"/>
+                            <Label text="Informations Pochoir" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #21262A;"/>
+                        </HBox>
+                        <Separator/>
+                        <GridPane hgap="20" vgap="8">
+                            <Label text="Ref. Pochoir :" style="-fx-font-weight: bold; -fx-text-fill: #6F8D94; -fx-font-size: 12px;" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                            <Label fx:id="infoRef" text="—" style="-fx-text-fill: #21262A; -fx-font-size: 12px;" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                            <Label text="Programme :" style="-fx-font-weight: bold; -fx-text-fill: #6F8D94; -fx-font-size: 12px;" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                            <Label fx:id="infoProg" text="—" style="-fx-text-fill: #21262A; -fx-font-size: 12px;" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                            <Label text="Racle :" style="-fx-font-weight: bold; -fx-text-fill: #6F8D94; -fx-font-size: 12px;" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                            <Label fx:id="infoRacle" text="—" style="-fx-text-fill: #21262A; -fx-font-size: 12px;" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                            <Label text="Emplacement :" style="-fx-font-weight: bold; -fx-text-fill: #6F8D94; -fx-font-size: 12px;" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                            <Label fx:id="infoEmplacement" text="—" style="-fx-text-fill: #21262A; -fx-font-size: 12px;" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                            <Label text="Statut :" style="-fx-font-weight: bold; -fx-text-fill: #6F8D94; -fx-font-size: 12px;" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                            <Label fx:id="infoStatut" text="—" style="-fx-text-fill: #21262A; -fx-font-size: 12px;" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+                            <Label text="Face :" style="-fx-font-weight: bold; -fx-text-fill: #6F8D94; -fx-font-size: 12px;" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                            <Label fx:id="infoFace" text="—" style="-fx-text-fill: #21262A; -fx-font-size: 12px;" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+                            <Label text="Epaisseur :" style="-fx-font-weight: bold; -fx-text-fill: #6F8D94; -fx-font-size: 12px;" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+                            <Label fx:id="infoEpaisseur" text="—" style="-fx-text-fill: #21262A; -fx-font-size: 12px;" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+                            <Label text="Support :" style="-fx-font-weight: bold; -fx-text-fill: #6F8D94; -fx-font-size: 12px;" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+                            <Label fx:id="infoSupport" text="—" style="-fx-text-fill: #21262A; -fx-font-size: 12px;" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+                            <Label text="Stock :" style="-fx-font-weight: bold; -fx-text-fill: #6F8D94; -fx-font-size: 12px;" GridPane.rowIndex="8" GridPane.columnIndex="0"/>
+                            <Label fx:id="infoStock" text="—" style="-fx-text-fill: #21262A; -fx-font-size: 12px; -fx-font-weight: bold;" GridPane.rowIndex="8" GridPane.columnIndex="1"/>
+                            <Label text="Qte totale :" style="-fx-font-weight: bold; -fx-text-fill: #6F8D94; -fx-font-size: 12px;" GridPane.rowIndex="9" GridPane.columnIndex="0"/>
+                            <Label fx:id="infoQte" text="—" style="-fx-text-fill: #21262A; -fx-font-size: 12px;" GridPane.rowIndex="9" GridPane.columnIndex="1"/>
+                            <Label text="Cartes/Flan :" style="-fx-font-weight: bold; -fx-text-fill: #6F8D94; -fx-font-size: 12px;" GridPane.rowIndex="10" GridPane.columnIndex="0"/>
+                            <Label fx:id="infoNbFlan" text="—" style="-fx-text-fill: #21262A; -fx-font-size: 12px;" GridPane.rowIndex="10" GridPane.columnIndex="1"/>
+                        </GridPane>
+                    </VBox>
+
+                    <!-- Anomalies de ce pochoir -->
+                    <VBox spacing="10" style="-fx-background-color: #ffffff; -fx-padding: 16 20; -fx-background-radius: 12; -fx-border-radius: 12; -fx-border-color: #E2E8F0; -fx-border-width: 1; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.04), 8, 0, 0, 2);">
+                        <HBox alignment="CENTER_LEFT" spacing="8">
+                            <Rectangle width="3" height="18" fill="#E53E3E" arcWidth="2" arcHeight="2"/>
+                            <Label text="Anomalies Signalees" style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #21262A;"/>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <Label fx:id="anomaliesCountLabel" text="0 anomalie"
+                                   style="-fx-background-color: #FEF2F2; -fx-text-fill: #E53E3E; -fx-font-size: 11px; -fx-font-weight: bold; -fx-padding: 2 10; -fx-background-radius: 10;"/>
+                        </HBox>
+                        <Separator/>
+                        <VBox fx:id="anomaliesListContainer" spacing="8"/>
+                    </VBox>
+
+                </VBox>
+            </ScrollPane>
+        </VBox>
+    </VBox>
+</HBox>

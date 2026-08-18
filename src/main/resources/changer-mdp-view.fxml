@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="controller.ChangerMdpController"
+      spacing="0"
+      alignment="TOP_CENTER"
+      style="-fx-background-color: #f0f2f5;"
+      prefWidth="Infinity"
+      prefHeight="Infinity">
+
+    <!-- HEADER -->
+    <VBox style="-fx-background-color: #ffffff;
+                 -fx-padding: 12 25;
+                 -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 6, 0, 0, 2); -fx-border-color: #E2E8F0; -fx-border-width: 0 0 1 0;">
+
+        <HBox alignment="CENTER_LEFT" spacing="15">
+            <Button text="&#8592; Retour" onAction="#handleRetour"
+                    style="-fx-background-color: #EBF8F9; -fx-text-fill: #346771; -fx-font-weight: bold; -fx-padding: 5 14; -fx-border-radius: 6; -fx-background-radius: 6; -fx-cursor: hand; -fx-font-size: 12px; -fx-border-color: #346771; -fx-border-width: 1;"/>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <VBox alignment="CENTER_RIGHT">
+                <Label text="Changer le Mot de Passe"
+                       style="-fx-text-fill: #21262A; -fx-font-size: 17px; -fx-font-weight: bold; -fx-letter-spacing: 1px;"/>
+                <Label text="D&#233;finir un nouveau mot de passe s&#233;curis&#233;"
+                       style="-fx-text-fill: #6F8D94; -fx-font-size: 10px; -fx-font-weight: 300;"/>
+            </VBox>
+        </HBox>
+    </VBox>
+
+    <!-- CORPS -->
+    <VBox spacing="12" alignment="TOP_CENTER" style="-fx-padding: 20 30; -fx-background-color: #f0f2f5;">
+
+        <!-- Carte formulaire -->
+        <VBox spacing="12" style="-fx-background-color: #ffffff;
+                                  -fx-border-radius: 10;
+                                  -fx-background-radius: 10;
+                                  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 10, 0, 0, 2);
+                                  -fx-padding: 18 25 18 25;"
+              maxWidth="650" prefWidth="650">
+
+            <HBox alignment="CENTER_LEFT" spacing="8">
+                <Rectangle width="3" height="18" fill="#3A98A5" arcWidth="2" arcHeight="2"/>
+                <Label text="Nouveau mot de passe"
+                       style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #21262A;"/>
+            </HBox>
+
+            <Separator style="-fx-background-color: #e8eaee;"/>
+
+            <!-- Utilisateur info (lecture seule) -->
+            <VBox spacing="4" style="-fx-background-color: #f0f2f5; -fx-background-radius: 6; -fx-border-radius: 6;
+                                     -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-padding: 8 12;">
+                <Label text="Utilisateur concern&#233;"
+                       style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 11px;"/>
+                <Label fx:id="userInfoLabel" text="—"
+                       style="-fx-text-fill: #346771; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+            </VBox>
+
+            <GridPane hgap="15" vgap="10" alignment="CENTER" style="-fx-padding: 5 0 5 0;">
+
+                <!-- Ligne 0 : Nouveau mot de passe -->
+                <Label text="Nouveau mot de passe" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                       GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <VBox spacing="4" GridPane.rowIndex="0" GridPane.columnIndex="1">
+                    <PasswordField fx:id="newPasswordField" promptText="Minimum 8 caract&#232;res"
+                                   style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                          -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                          -fx-background-color: #fafbfc;"
+                                   prefWidth="300"/>
+                    <Label fx:id="strengthLabel" text=""
+                           style="-fx-font-size: 11px; -fx-font-style: italic;"/>
+                </VBox>
+
+                <!-- Ligne 1 : Confirmer mot de passe -->
+                <Label text="Confirmer mot de passe" style="-fx-font-weight: bold; -fx-text-fill: #21262A; -fx-font-size: 12px;"
+                       GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <PasswordField fx:id="confirmPasswordField" promptText="R&#233;p&#233;ter le mot de passe"
+                               style="-fx-padding: 6 10; -fx-border-radius: 6; -fx-background-radius: 6;
+                                      -fx-border-color: #d0d5dd; -fx-border-width: 1; -fx-font-size: 12px;
+                                      -fx-background-color: #fafbfc;"
+                               GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+            </GridPane>
+
+            <!-- Note règles mot de passe -->
+            <Label text="&#128274; Minimum 8 caract&#232;res requis"
+                   style="-fx-text-fill: #9aa3ad; -fx-font-size: 11px; -fx-font-style: italic; -fx-padding: 0 0 0 4;"/>
+
+            <HBox spacing="12" alignment="CENTER" style="-fx-padding: 8 0 0 0;">
+                <Button text="Annuler" onAction="#handleAnnuler"
+                        style="-fx-background-color: #e8eaee;
+                               -fx-text-fill: #6F8D94;
+                               -fx-font-weight: bold;
+                               -fx-padding: 6 25;
+                               -fx-border-radius: 6;
+                               -fx-background-radius: 6;
+                               -fx-cursor: hand;
+                               -fx-font-size: 12px;"/>
+                <Button text="&#9989; Enregistrer" onAction="#handleEnregistrer"
+                        style="-fx-background-color: #46BE62;
+                               -fx-text-fill: #ffffff;
+                               -fx-font-weight: bold;
+                               -fx-padding: 6 25;
+                               -fx-border-radius: 6;
+                               -fx-background-radius: 6;
+                               -fx-cursor: hand;
+                               -fx-font-size: 12px;
+                               -fx-effect: dropshadow(gaussian, rgba(70,190,98,0.3), 6, 0, 0, 2);"/>
+            </HBox>
+
+        </VBox>
+
+    </VBox>
+</VBox>

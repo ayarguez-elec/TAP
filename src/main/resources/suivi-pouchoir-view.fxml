@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.SuiviPouchoirController"
+            styleClass="armoire-container"
+            prefWidth="Infinity"
+            prefHeight="Infinity"
+            maxWidth="Infinity"
+            maxHeight="Infinity">
+
+    <center>
+        <VBox spacing="14" style="-fx-padding: 20 24 20 20; -fx-background-color: #F8FAFC;">
+            <!-- Header Section avec Titre et Badges de légende -->
+            <HBox alignment="CENTER_LEFT" spacing="16" styleClass="suivi-header-card">
+                <VBox spacing="2">
+                    <Label styleClass="armoire-title" text="Suivi des Pochoirs — Armoire de Stockage"/>
+                    <Label text="Gestion visuelle en temps réel des emplacements et disponibilités" style="-fx-text-fill: #6F8D94; -fx-font-size: 12px;"/>
+                </VBox>
+                <Region HBox.hgrow="ALWAYS"/>
+                <HBox spacing="12" alignment="CENTER">
+                    <HBox spacing="6" alignment="CENTER" styleClass="legend-chip-occupied">
+                        <Label text="●" style="-fx-text-fill: #46BE62; -fx-font-size: 12px;"/>
+                        <Label text="Occupé" style="-fx-text-fill: #21262A; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+                    </HBox>
+                    <HBox spacing="6" alignment="CENTER" styleClass="legend-chip-free">
+                        <Label text="●" style="-fx-text-fill: #3A98A5; -fx-font-size: 12px;"/>
+                        <Label text="Libre" style="-fx-text-fill: #21262A; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+                    </HBox>
+                </HBox>
+            </HBox>
+
+            <!-- Barre de Recherche et de Filtrage Moderne -->
+            <VBox spacing="10" styleClass="suivi-filter-card">
+                <HBox spacing="12" alignment="CENTER_LEFT">
+                    <!-- Zone de recherche -->
+                    <HBox alignment="CENTER_LEFT" spacing="8" HBox.hgrow="ALWAYS" styleClass="suivi-search-box">
+                        <Label text="⌕" style="-fx-font-size: 14px; -fx-opacity: 0.7;"/>
+                        <TextField fx:id="searchField" promptText="Rechercher par référence pochoir, emplacement ou nom de produit..."
+                                   HBox.hgrow="ALWAYS" styleClass="suivi-search-input"/>
+                    </HBox>
+
+                    <!-- Filtre Racle -->
+                    <HBox spacing="6" alignment="CENTER">
+                        <Label text="Racle :" styleClass="suivi-filter-label" minWidth="45"/>
+                        <ComboBox fx:id="filterRacle" prefWidth="95" onAction="#handleFilter" styleClass="suivi-combo"/>
+                    </HBox>
+
+                    <!-- Filtre Statut -->
+                    <HBox spacing="6" alignment="CENTER">
+                        <Label text="Statut :" styleClass="suivi-filter-label" minWidth="50"/>
+                        <ComboBox fx:id="filterStatut" prefWidth="105" onAction="#handleFilter" styleClass="suivi-combo"/>
+                    </HBox>
+
+                    <!-- Bouton Réinitialiser -->
+                    <Button text="🔄 Réinitialiser" styleClass="btn-reset-modern" onAction="#handleReset"/>
+                </HBox>
+
+                <!-- Ligne secondaire d'état de sélection -->
+                <HBox alignment="CENTER_RIGHT" spacing="10">
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="selectedEmplacement" text="Emplacement sélectionné: Aucun" styleClass="selected-emp-badge"/>
+                </HBox>
+            </VBox>
+
+            <!-- Grille d'Emplacements de l'Armoire -->
+            <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" styleClass="armoire-scrollpane">
+                <TilePane fx:id="armoireGrid" styleClass="armoire-grid"
+                          prefColumns="10"
+                          prefRows="40"
+                          alignment="TOP_LEFT"
+                          tileAlignment="CENTER"
+                          hgap="10" vgap="10">
+                    <padding>
+                        <Insets top="8" right="8" bottom="8" left="8"/>
+                    </padding>
+                </TilePane>
+            </ScrollPane>
+        </VBox>
+    </center>
+
+    <right>
+        <VBox fx:id="detailPanel" styleClass="detail-panel" spacing="12" prefWidth="300" alignment="TOP_CENTER">
+            <padding>
+                <Insets top="20" right="18" bottom="20" left="18"/>
+            </padding>
+
+            <HBox alignment="CENTER_LEFT" spacing="8" style="-fx-padding: 0 0 8 0;">
+                <Label text="📋" style="-fx-font-size: 16px;"/>
+                <Label text="Détails Emplacement" style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #21262A;"/>
+            </HBox>
+
+            <Separator styleClass="panel-separator"/>
+
+            <StackPane fx:id="detailContent" VBox.vgrow="ALWAYS" alignment="CENTER">
+                <VBox alignment="CENTER" spacing="10" style="-fx-padding: 30 10;">
+                    <Label text="👆" style="-fx-font-size: 38px;"/>
+                    <Label text="Sélectionnez un emplacement" style="-fx-text-fill: #384B52; -fx-font-weight: bold; -fx-font-size: 13px;"/>
+                    <Label text="Cliquez sur une case de l'armoire pour afficher ses détails ou gérer son contenu"
+                           style="-fx-text-fill: #6F8D94; -fx-font-size: 11px; -fx-text-alignment: center;" wrapText="true"/>
+                </VBox>
+            </StackPane>
+
+            <Button text="⚡ Aller à la Codification" onAction="#openCodification"
+                    styleClass="btn-codification-modern"
+                    onMouseEntered="#onCodificationButtonHover"
+                    onMouseExited="#onCodificationButtonExit"/>
+        </VBox>
+    </right>
+</BorderPane>
