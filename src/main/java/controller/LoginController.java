@@ -63,7 +63,6 @@ public class LoginController {
                     ? "Lacroix Electronics - Production"
                     : "Lacroix Electronics";
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
-            loader.setResources(controller.MainController.bundle);
             Scene scene = new Scene(loader.load(), 1200, 800);
             Stage stage = (Stage) usernameField.getScene().getWindow();
             stage.setScene(scene);

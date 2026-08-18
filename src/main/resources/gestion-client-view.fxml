@@ -18,7 +18,7 @@
             <!-- Header Section -->
             <HBox alignment="CENTER_LEFT" spacing="16" styleClass="suivi-header-card">
                 <VBox spacing="2">
-                    <Label styleClass="armoire-title" text="%client.title"/>
+                    <Label styleClass="armoire-title" text="title"/>
                     <Label text="Répertoire et fiches détaillées des clients partenaires Lacroix Electronics" style="-fx-text-fill: #6F8D94; -fx-font-size: 12px;"/>
                 </VBox>
                 <Region HBox.hgrow="ALWAYS"/>

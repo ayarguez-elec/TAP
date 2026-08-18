@@ -9,7 +9,7 @@ public class MyDataBase {
     private static MyDataBase instance;
     private Connection connection;
 
-    private final String URL = "mysql://${{MYSQLUSER}}:${{MYSQLPASSWORD}}@${{RAILWAY_TCP_PROXY_DOMAIN}}:${{RAILWAY_TCP_PROXY_PORT}}/${{MYSQLDATABASE}}";
+    private final String URL = "jdbc:mysql://gondola.proxy.rlwy.net:15054/railway?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true&connectTimeout=10000";
     private final String USERNAME = "root";
     private final String PASSWORD = "TzsnXzYWdsxKUfxEtOAmNZizoUaOKxnS";
 
@@ -21,9 +21,9 @@ public class MyDataBase {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-            System.out.println("Connexion à la base de données établie avec succès!");
+            System.out.println("Connexion etablie avec succes!");
         } catch (ClassNotFoundException e) {
-            System.err.println("Driver MySQL non trouvé!");
+            System.err.println("Driver MySQL non trouve!");
             e.printStackTrace();
         } catch (SQLException e) {
             System.err.println("Erreur de connexion: " + e.getMessage());
@@ -40,13 +40,12 @@ public class MyDataBase {
 
     public Connection getConnection() {
         try {
-            // isValid(5) checks if the connection is alive (timeout in seconds)
             if (connection == null || connection.isClosed() || !connection.isValid(5)) {
-                System.out.println("Reconnexion à la base de données...");
+                System.out.println("Reconnexion...");
                 connect();
             }
         } catch (SQLException e) {
-            System.err.println("Erreur lors de la vérification de la connexion: " + e.getMessage());
+            System.err.println("Erreur verification connexion: " + e.getMessage());
             connect();
         }
         return connection;
@@ -56,7 +55,7 @@ public class MyDataBase {
         if (connection != null) {
             try {
                 connection.close();
-                System.out.println("Connexion fermée");
+                System.out.println("Connexion fermee");
             } catch (SQLException e) {
                 e.printStackTrace();
             }
