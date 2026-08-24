@@ -15,6 +15,3 @@ Acceptez la mise a jour lorsqu'elle vous est proposee.
 CONNEXION:
 L'application se connecte automatiquement a la base de donnees distante.
 Assurez-vous d'avoir une connexion internet.
-
-SUPPORT:
-Contactez l'administrateur systeme en cas de probleme.
