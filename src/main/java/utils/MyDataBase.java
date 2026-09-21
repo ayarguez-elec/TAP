@@ -9,9 +9,9 @@ public class MyDataBase {
     private static MyDataBase instance;
     private Connection connection;
 
-    private final String URL = "jdbc:mysql://gondola.proxy.rlwy.net:15054/railway?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true&connectTimeout=10000";
-    private final String USERNAME = "root";
-    private final String PASSWORD = "TzsnXzYWdsxKUfxEtOAmNZizoUaOKxnS";
+    private final String URL = "";
+    private final String USERNAME = "";
+    private final String PASSWORD = "";
 
     private MyDataBase() {
         connect();
